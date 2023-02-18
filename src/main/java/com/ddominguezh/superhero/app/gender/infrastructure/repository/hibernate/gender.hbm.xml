@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ddominguezh.superhero.app.gender.domain.Gender" table="color">
+    <class name="com.ddominguezh.superhero.app.gender.domain.Gender" table="gender">
     	<composite-id name="id" class="com.ddominguezh.superhero.app.gender.domain.valueObject.GenderId" access="field">
     		<key-property name="value" column="id" type="int" access="field" />
     	</composite-id>
