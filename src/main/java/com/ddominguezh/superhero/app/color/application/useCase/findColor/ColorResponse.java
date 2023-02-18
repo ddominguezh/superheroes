@@ -11,7 +11,7 @@ public class ColorResponse {
 		this.name = name;
 	}
 	public static ColorResponse from(Color color) {
-		return new ColorResponse(color.getId(), color.getName());
+		return new ColorResponse(color.id(), color.name());
 	}
 	public int getId() {
 		return id;
