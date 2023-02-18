@@ -4,4 +4,8 @@ import com.ddominguezh.superhero.shared.domain.bus.query.Response;
 
 public class FindGenderResponse implements Response {
 
+	public Integer getSize() {
+		return 0;
+	}
+
 }
