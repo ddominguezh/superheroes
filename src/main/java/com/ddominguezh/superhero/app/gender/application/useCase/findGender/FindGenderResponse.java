@@ -1,5 +1,6 @@
 package com.ddominguezh.superhero.app.gender.application.useCase.findGender;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,11 +16,13 @@ public class FindGenderResponse implements Response {
 	}
 
 	public static FindGenderResponse from(List<Gender> genders) {
-		return new FindGenderResponse(
-				genders.stream()
+		List<GenderResponse> gendersResponse = new ArrayList<GenderResponse>();
+		if(genders != null) {
+			gendersResponse = genders.stream()
 					.map(gender -> GenderResponse.from(gender))
-					.collect(Collectors.toList())
-			);
+					.collect(Collectors.toList());
+		}
+		return new FindGenderResponse(gendersResponse);
 	}
 
 	public List<GenderResponse> getGenders(){
