@@ -9,10 +9,10 @@ import java.util.Random;
 public class ColorMother {
 
 	public static List<Color> randomColors() {
-		return Collections.nCopies(new Random(10).nextInt(), randomColor());
+		return Collections.nCopies(new Random().nextInt(10), randomColor());
 	}
 
 	public static Color randomColor() {
-		return Color.create(new Random(100).nextInt(), randomAlphabetic(30));
+		return Color.create(new Random().nextInt(100), randomAlphabetic(30));
 	}
 }
