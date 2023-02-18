@@ -8,5 +8,5 @@ import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 public interface HeroRepository {
 
 	Optional<Hero> findById(HeroId ID);
-
+	void delete(Hero hero);
 }
