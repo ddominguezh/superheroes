@@ -2,12 +2,20 @@ package com.ddominguezh.superhero.app.color.domain;
 
 import com.ddominguezh.superhero.app.color.domain.valueObject.ColorId;
 import com.ddominguezh.superhero.app.color.domain.valueObject.ColorName;
+import com.ddominguezh.superhero.shared.domain.IntValueObject;
+import com.ddominguezh.superhero.shared.domain.StringValueObject;
 
 public class Color {
 
 	private ColorId id;
 	private ColorName name;
-	Color(ColorId id, ColorName name){
+	protected Color(){
+		this(
+			ColorId.create(IntValueObject.Empty()), 
+			ColorName.create(StringValueObject.Empty())
+		);
+	}
+	protected Color(ColorId id, ColorName name){
 		this.id = id;
 		this.name = name;
 	}
@@ -17,10 +25,10 @@ public class Color {
 				ColorName.create(name)
 			);
 	}
-	public int getId() {
-		return this.id.getValue();
+	public int id() {
+		return this.id.value();
 	}
-	public String getName() {
-		return this.name.getValue();
+	public String name() {
+		return this.name.value();
 	}
 }

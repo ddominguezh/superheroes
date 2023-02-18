@@ -1,16 +1,17 @@
 package com.ddominguezh.superhero.app.color.domain.valueObject;
 
-public class ColorId {
+import com.ddominguezh.superhero.shared.domain.IntValueObject;
 
-	private int value;
-	ColorId(int value) {
-		this.value = value;
+public class ColorId extends IntValueObject {
+
+	protected ColorId(){
+		this(IntValueObject.Empty());
+	}
+	protected ColorId(int value) {
+		super(value);
 	}
 	public static ColorId create(int value) {
 		return new ColorId(value);
-	}
-	public int getValue() {
-		return value;
 	}
 	
 }
