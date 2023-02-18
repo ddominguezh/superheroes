@@ -22,13 +22,12 @@ public class H2HeroRepository extends HibernateRepository<Hero> implements HeroR
 
 	@Override
 	public Optional<Hero> findById(HeroId id) {
-		return byId(id);
+		return super.byId(id);
 	}
 
 	@Override
 	public void delete(Hero hero) {
-		// TODO Auto-generated method stub
-		
+		super.delete(hero);
 	}
 
 }
