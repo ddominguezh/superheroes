@@ -34,14 +34,14 @@ public class ColorGetControllerTest {
 	@Test
 	public void ping_color_enpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/color")
-				.contentType(MediaType.APPLICATION_JSON))
+				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void get_all_colors() throws Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/color")
-				.contentType(MediaType.APPLICATION_JSON))
+				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
 				.andReturn()
@@ -49,6 +49,6 @@ public class ColorGetControllerTest {
 				.getContentAsString();
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		FindColorResponse colors = gson.fromJson(response, FindColorResponse.class);
-		assertTrue(colors.size() > 0);
+		assertTrue(colors.getSize() > 0);
 	}
 }
