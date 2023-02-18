@@ -17,16 +17,17 @@ import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
 import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
-@Controller(value="GenderGetController")
+@Controller(value="GendersGetController")
 @RequestMapping("gender")
-public class GenderGetController extends ApiController{
+public class GendersGetController extends ApiController{
 
-	public GenderGetController(QueryBus queryBus, CommandBus commandBus) {
+	public GendersGetController(QueryBus queryBus, CommandBus commandBus) {
 		super(queryBus, commandBus);
 	}
 
 	@CrossOrigin
 	@RequestMapping(
+			value = "/all",
 			method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE
 		)
