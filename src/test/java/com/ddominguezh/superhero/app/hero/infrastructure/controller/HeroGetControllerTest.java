@@ -3,6 +3,7 @@ package com.ddominguezh.superhero.app.hero.infrastructure.controller;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.UnsupportedEncodingException;
+import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,5 +54,12 @@ public class HeroGetControllerTest {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		FindOneHeroResponse hero = gson.fromJson(response, FindOneHeroResponse.class);
 		assertEquals(heroId, hero.getId());
+	}
+	
+	@Test
+	public void hero_not_found() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + UUID.randomUUID().toString())
+				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 }
