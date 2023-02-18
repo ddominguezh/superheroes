@@ -1,5 +1,7 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.controller;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+
 import java.util.UUID;
 
 import org.junit.Test;
@@ -52,6 +54,13 @@ public class HeroDeleteControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + UUID.randomUUID().toString())
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	
+	@Test
+	public void delete_hero_bad_request() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + randomAlphabetic(36))
+				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
 }
