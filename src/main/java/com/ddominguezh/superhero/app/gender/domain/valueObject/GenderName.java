@@ -4,6 +4,9 @@ import com.ddominguezh.superhero.shared.domain.StringValueObject;
 
 public class GenderName extends StringValueObject {
 
+	public GenderName() {
+		this(StringValueObject.Empty());
+	}
 	public GenderName(String value) {
 		super(value);
 	}

@@ -4,6 +4,9 @@ import com.ddominguezh.superhero.shared.domain.IntValueObject;
 
 public class GenderId extends IntValueObject {
 
+	public GenderId() {
+		this(IntValueObject.Empty());
+	}
 	public GenderId(int value) {
 		super(value);
 	}
