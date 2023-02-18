@@ -39,7 +39,7 @@ public class HeroDeleteControllerTest {
 	
 	@Test
 	public void hero_not_found() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/delete/" + UUID.randomUUID().toString())
+		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + UUID.randomUUID().toString())
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
