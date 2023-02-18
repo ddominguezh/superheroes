@@ -20,6 +20,7 @@ import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
+import com.ddominguezh.superhero.app.hero.domain.useCase.findHeroById.HeroByIdFinder;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 
@@ -32,19 +33,19 @@ public class OneHeroFinderTest {
 	private OneHeroFinder finder;
 	
 	@Mock
-	private HeroRepository repository;
+	private HeroByIdFinder finderById;
 	
 	@Test
 	public void get_hero() {
 		Hero hero = HeroMother.randomHero();
-		when(repository.findById(any(HeroId.class))).thenReturn(Optional.of(hero));
+		when(finderById.invoke(any(HeroId.class))).thenReturn(hero);
 		FindOneHeroResponse response = finder.invoke(new FindOneHeroQuery(hero.id()));
 		assertEquals(hero.id(), response.getId());
 	}
 	
 	@Test
 	public void hero_not_found() {
-		when(repository.findById(any(HeroId.class))).thenReturn(Optional.empty());
+		when(finderById.invoke(any(HeroId.class))).thenThrow(HeroNotFoundException.class);
 		assertThrows(HeroNotFoundException.class, () -> finder.invoke(new FindOneHeroQuery(UUID.randomUUID().toString())));
 	}
 }
