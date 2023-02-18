@@ -5,11 +5,13 @@ import org.junit.platform.suite.api.Suite;
 
 import com.ddominguezh.superhero.app.color.application.useCase.findColor.ColorFinderTest;
 import com.ddominguezh.superhero.app.color.infrastructure.controller.ColorGetControllerTest;
+import com.ddominguezh.superhero.app.color.infrastructure.repository.H2ColorRepositoryTest;
 
 @SelectClasses(
 		{
 			ColorFinderTest.class,
-			ColorGetControllerTest.class
+			ColorGetControllerTest.class,
+			H2ColorRepositoryTest.class
 		}
 	)
 @Suite
