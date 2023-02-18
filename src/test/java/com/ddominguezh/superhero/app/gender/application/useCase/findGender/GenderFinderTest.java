@@ -38,4 +38,11 @@ public class GenderFinderTest {
 		assertEquals(0, response.getSize());
 	}
 	
+	@Test
+	public void get_emtpy_gender_list_when_retun_null() {
+		when(repository.findAll()).thenReturn(null);
+		FindGenderResponse response = finder.invoke(new FindGenderQuery());
+		assertEquals(0, response.getSize());
+	}
+	
 }
