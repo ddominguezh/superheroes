@@ -34,4 +34,11 @@ public class ColorFinderTest {
 		FindColorResponse response = finder.invoke(new FindColorQuery());
 		assertEquals(0, response.getSize());
 	}
+	
+	@Test
+	public void get_emtpy_color_list_when_retun_null() {
+		when(repository.findAll()).thenReturn(null);
+		FindColorResponse response = finder.invoke(new FindColorQuery());
+		assertEquals(0, response.getSize());
+	}
 }
