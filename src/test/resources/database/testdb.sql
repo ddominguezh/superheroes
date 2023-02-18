@@ -18,4 +18,4 @@ insert into gender( id, name ) values (4, 'TRANSGENDER');
 
 DROP TABLE IF EXISTS hero;
 CREATE TABLE hero(ID CHAR(36) PRIMARY KEY);
-insert into hero( id ) values ('a8e012a9-d074-4f86-a927-125e25f13c6d');
+insert into hero( id ) values ('7f675eca-afbf-11ed-afa1-0242ac120002');

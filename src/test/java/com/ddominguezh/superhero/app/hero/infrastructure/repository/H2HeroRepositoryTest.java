@@ -27,7 +27,7 @@ public class H2HeroRepositoryTest {
 	
 	@Test
 	public void hero_detail() {
-		String heroId = "a8e012a9-d074-4f86-a927-125e25f13c6d";
+		String heroId = "7f675eca-afbf-11ed-afa1-0242ac120002";
 		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
 		assertTrue(hero.isPresent());
 		assertEquals(heroId, hero.get().id());
