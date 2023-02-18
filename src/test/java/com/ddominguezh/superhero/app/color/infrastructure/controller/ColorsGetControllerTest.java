@@ -29,21 +29,21 @@ import com.google.gson.GsonBuilder;
 @SpringBootTest
 @ContextConfiguration(classes = SuperheroApplication.class)
 @AutoConfigureMockMvc
-public class ColorGetControllerTest {
+public class ColorsGetControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 	
 	@Test
 	public void ping_color_enpoint() throws Exception {
-		mockMvc.perform(MockMvcRequestBuilders.get("/color")
+		mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void get_all_colors() throws Exception {
-		String response = mockMvc.perform(MockMvcRequestBuilders.get("/color")
+		String response = mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())

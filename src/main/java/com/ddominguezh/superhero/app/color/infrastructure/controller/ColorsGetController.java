@@ -17,16 +17,17 @@ import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
 import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
-@Controller(value="ColorGetController")
+@Controller(value="ColorsGetController")
 @RequestMapping("color")
-public class ColorGetController extends ApiController{
+public class ColorsGetController extends ApiController{
 
-	public ColorGetController(QueryBus queryBus, CommandBus commandBus) {
+	public ColorsGetController(QueryBus queryBus, CommandBus commandBus) {
 		super(queryBus, commandBus);
 	}
 
 	@CrossOrigin
 	@RequestMapping(
+			value="/all",
 			method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE
 		)
