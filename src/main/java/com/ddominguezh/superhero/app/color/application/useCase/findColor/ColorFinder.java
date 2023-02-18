@@ -12,8 +12,7 @@ public class ColorFinder {
 	private ColorRepository repository;
 	
 	public FindColorResponse invoke(FindColorQuery findColorQuery) {
-		// TODO Auto-generated method stub
-		return null;
+		return FindColorResponse.from(repository.findAll());
 	}
 
 }
