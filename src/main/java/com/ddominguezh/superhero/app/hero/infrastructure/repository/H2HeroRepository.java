@@ -1,5 +1,7 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.repository;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import com.ddominguezh.superhero.app.hero.domain.Hero;
@@ -10,7 +12,7 @@ import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 public class H2HeroRepository implements HeroRepository {
 
 	@Override
-	public Hero findById(HeroId ID) {
+	public Optional<Hero> findById(HeroId ID) {
 		// TODO Auto-generated method stub
 		return null;
 	}
