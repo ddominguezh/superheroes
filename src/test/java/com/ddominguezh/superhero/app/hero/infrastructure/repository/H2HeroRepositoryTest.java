@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ddominguezh.superhero.app.hero.domain.Hero;
+import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 
@@ -48,5 +49,13 @@ public class H2HeroRepositoryTest {
 		repository.delete(hero.get());
 		hero = repository.findById(HeroId.create(heroId));
 		assertTrue(hero.isEmpty());
+	}
+	
+	@Test
+	public void create_hero() {
+		Hero newHero = HeroMother.randomHero();
+		repository.create(newHero);
+		Optional<Hero> hero = repository.findById(HeroId.create(newHero.id()));
+		assertTrue(hero.isPresent());
 	}
 }
