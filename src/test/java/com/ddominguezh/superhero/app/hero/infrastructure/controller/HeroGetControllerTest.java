@@ -1,5 +1,6 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.controller;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.UnsupportedEncodingException;
@@ -59,5 +60,12 @@ public class HeroGetControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + UUID.randomUUID().toString())
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	
+	@Test
+	public void get_hero_bad_request() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + randomAlphabetic(36))
+				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 }
