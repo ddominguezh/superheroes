@@ -41,4 +41,8 @@ public abstract class Identifier implements Serializable {
     private void ensureValidUuid(String value) throws IllegalArgumentException {
         UUID.fromString(value);
     }
+
+	public static String empty() {
+		return "";
+	}
 }
