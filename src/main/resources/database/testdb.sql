@@ -16,4 +16,6 @@ insert into gender( id, name ) values (3, 'MEN');
 insert into gender( id, name ) values (4, 'TRANSGENDER');
 
 CREATE TABLE hero(ID CHAR(36) PRIMARY KEY,
-    NAME VARCHAR(255) DEFAULT '' NOT NULL);
+    NAME VARCHAR(255) DEFAULT '' NOT NULL,
+    HEIGHT INT DEFAULT 0 NOT NULL,
+    WEIGHT INT DEFAULT 0 NOT NULL);

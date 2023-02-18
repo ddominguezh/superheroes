@@ -10,6 +10,12 @@
     	</composite-id>
     	<component name="name" class="com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName" access="field">
         	<property name="value" column="name" type="string" access="field" />
-        </component> 
+        </component>
+        <component name="height" class="com.ddominguezh.superhero.app.hero.domain.valueObject.HeroHeight" access="field">
+        	<property name="value" column="height" type="int" access="field" />
+        </component>
+        <component name="weight" class="com.ddominguezh.superhero.app.hero.domain.valueObject.HeroWeight" access="field">
+        	<property name="value" column="weight" type="int" access="field" />
+        </component>
     </class>
 </hibernate-mapping>

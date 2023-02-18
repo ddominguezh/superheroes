@@ -41,6 +41,8 @@ public class HeroByIdFinderTest {
 		Hero response = finder.invoke(HeroId.create(hero.id()));
 		assertEquals(hero.id(), response.id());
 		assertEquals(hero.name(), response.name());
+		assertEquals(hero.height(), response.height());
+		assertEquals(hero.weight(), response.weight());
 	}
 	
 	@Test

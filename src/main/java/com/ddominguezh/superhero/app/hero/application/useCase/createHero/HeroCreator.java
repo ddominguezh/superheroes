@@ -13,6 +13,13 @@ public class HeroCreator {
 	private HeroRepository repository;
 	
 	public void invoke(CreateHeroCommand command) {
-		repository.create(Hero.create(command.getId(), command.getName()));
+		repository.create(
+				Hero.create(
+						command.getId(), 
+						command.getName(),
+						command.getHeight(),
+						command.getWeight()
+					)
+				);
 	}
 }

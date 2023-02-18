@@ -18,7 +18,9 @@ insert into gender( id, name ) values (4, 'TRANSGENDER');
 
 DROP TABLE IF EXISTS hero;
 CREATE TABLE hero(ID CHAR(36) PRIMARY KEY,
-    NAME VARCHAR(255) DEFAULT '' NOT NULL);
-insert into hero( id, name ) values ('7f675eca-afbf-11ed-afa1-0242ac120002', 'Spiderman');
-insert into hero( id, name ) values ('90eea291-160f-4ccc-9895-2ff1e9c8b14b', 'Wonder Woman');
-insert into hero( id, name ) values ('1b4fb755-6777-4860-b486-f25dc8e626e8', 'Mrs Marvel');
+    NAME VARCHAR(255) DEFAULT '' NOT NULL,
+    HEIGHT INT DEFAULT 0 NOT NULL,
+    WEIGHT INT DEFAULT 0 NOT NULL);
+insert into hero( id, name, height, weight ) values ('7f675eca-afbf-11ed-afa1-0242ac120002', 'Spiderman', 165, 80);
+insert into hero( id, name, height, weight ) values ('90eea291-160f-4ccc-9895-2ff1e9c8b14b', 'Wonder Woman', 175, 62);
+insert into hero( id, name, height, weight ) values ('1b4fb755-6777-4860-b486-f25dc8e626e8', 'Mrs Marvel', 164, 58);

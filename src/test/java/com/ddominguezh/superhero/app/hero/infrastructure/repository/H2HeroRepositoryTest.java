@@ -35,6 +35,8 @@ public class H2HeroRepositoryTest {
 		assertTrue(hero.isPresent());
 		assertEquals(heroId, hero.get().id());
 		assertEquals("Spiderman", hero.get().name());
+		assertEquals(165, hero.get().height());
+		assertEquals(80, hero.get().weight());
 	}
 	
 	@Test
