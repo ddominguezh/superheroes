@@ -1,4 +1,4 @@
-package com.ddominguezh.superhero.app.color.applicattion.useCase.findColor;
+package com.ddominguezh.superhero.app.color.application.useCase.findColor;
 
 import com.ddominguezh.superhero.shared.domain.bus.query.Response;
 
