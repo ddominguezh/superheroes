@@ -1,8 +1,10 @@
 package com.ddominguezh.superhero.app.color.applicattion.useCase.findColor;
 
-public class FindColorResponse {
+import com.ddominguezh.superhero.shared.domain.bus.query.Response;
 
-	public int size() {
+public class FindColorResponse implements Response {
+
+	public int getSize() {
 		return 0;
 	}
 
