@@ -21,8 +21,8 @@ public class Gender {
 	}
 	public static Gender create(int id, String name) {
 		return new Gender(
-				GenderId.create(IntValueObject.Empty()), 
-				GenderName.create(StringValueObject.Empty())	
+				GenderId.create(id), 
+				GenderName.create(name)	
 			);
 	}
 	public int id() {
