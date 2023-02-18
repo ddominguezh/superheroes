@@ -34,7 +34,7 @@ public class HeroGetController extends ApiController{
 		)
 	@ResponseBody
 	public FindOneHeroResponse index(@PathVariable("id") String id) throws Exception{
-		return null;
+		return ask(new FindOneHeroQuery(id));
 	}
 
 	@Override
