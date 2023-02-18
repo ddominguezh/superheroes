@@ -14,3 +14,5 @@ insert into gender( id, name ) values (1, 'UNDEFINED');
 insert into gender( id, name ) values (2, 'WOMEN');
 insert into gender( id, name ) values (3, 'MEN');
 insert into gender( id, name ) values (4, 'TRANSGENDER');
+
+CREATE TABLE hero(ID CHAR(36) PRIMARY KEY);
