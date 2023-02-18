@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorQuery;
-import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorResponse;
+import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderQuery;
+import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderResponse;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
@@ -31,8 +31,8 @@ public class GenderGetController extends ApiController{
 			produces = MediaType.APPLICATION_JSON_VALUE
 		)
 	@ResponseBody
-	public FindColorResponse index() throws Exception{
-		return null;
+	public FindGenderResponse index() throws Exception{
+		return ask(new FindGenderQuery());
 	}
 
 	@Override
