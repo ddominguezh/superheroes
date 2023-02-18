@@ -5,12 +5,14 @@ import org.junit.platform.suite.api.Suite;
 
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.OneHeroFinderTest;
 import com.ddominguezh.superhero.app.hero.domain.useCase.findHeroById.HeroByIdFinderTest;
+import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroGetControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroRepositoryTest;
 
 @SelectClasses(
 		{
 			OneHeroFinderTest.class,
 			HeroByIdFinderTest.class,
+			HeroGetControllerTest.class,
 			H2HeroRepositoryTest.class
 		}
 	)

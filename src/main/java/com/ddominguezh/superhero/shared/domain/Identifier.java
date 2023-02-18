@@ -43,6 +43,6 @@ public abstract class Identifier implements Serializable {
     }
 
 	public static String empty() {
-		return UUID.randomUUID().toString();
+		return "00000000-0000-0000-0000-000000000000";
 	}
 }
