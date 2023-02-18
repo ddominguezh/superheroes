@@ -116,6 +116,12 @@
 		    <version>1.95.6</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
 		<!-- Unit Test -->
 		<dependency>
 		    <groupId>junit</groupId>
