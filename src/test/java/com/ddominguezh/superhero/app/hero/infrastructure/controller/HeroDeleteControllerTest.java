@@ -1,5 +1,7 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.controller;
 
+import java.util.UUID;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 
 @RunWith(SpringRunner.class)
@@ -33,4 +36,12 @@ public class HeroDeleteControllerTest {
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
+	
+	@Test
+	public void hero_not_found() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/delete/" + UUID.randomUUID().toString())
+				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	
 }
