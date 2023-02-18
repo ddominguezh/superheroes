@@ -9,4 +9,6 @@ public interface HeroRepository {
 
 	Optional<Hero> findById(HeroId ID);
 	void delete(Hero hero);
+	void create(Hero hero);
+	
 }
