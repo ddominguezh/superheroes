@@ -1,7 +1,7 @@
 package com.ddominguezh.superhero.app.color.application.useCase.findColor;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import com.ddominguezh.superhero.app.color.domain.Color;
@@ -15,11 +15,13 @@ public class FindColorResponse implements Response {
 	}
 
 	public static FindColorResponse from(List<Color> colors) {
-		return new FindColorResponse(
-				colors.stream()
+		List<ColorResponse> parseColors = new ArrayList<ColorResponse>();
+		if(colors != null) {
+			parseColors = colors.stream()
 					.map(color -> ColorResponse.from(color))
-					.collect(Collectors.toList())
-				);
+					.collect(Collectors.toList());
+		}
+		return new FindColorResponse(parseColors);
 	}
 	
 	public int getSize() {
