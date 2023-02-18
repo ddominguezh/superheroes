@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.ddominguezh.superhero.app.color.applicattion.useCase.findColor.FindColorResponse;
+import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorResponse;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

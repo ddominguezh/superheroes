@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ddominguezh.superhero.app.color.applicattion.useCase.findColor.FindColorResponse;
+import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorResponse;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
