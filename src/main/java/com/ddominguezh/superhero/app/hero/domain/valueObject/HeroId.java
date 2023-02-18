@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.Identifier;
 
 public class HeroId extends Identifier {
 
-	protected HeroId() {
+	public HeroId() {
 		super(Identifier.empty());
 	}
 

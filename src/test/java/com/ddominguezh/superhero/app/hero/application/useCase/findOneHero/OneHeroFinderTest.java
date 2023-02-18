@@ -39,6 +39,7 @@ public class OneHeroFinderTest {
 		when(finderById.invoke(any(HeroId.class))).thenReturn(hero);
 		FindOneHeroResponse response = finder.invoke(new FindOneHeroQuery(hero.id()));
 		assertEquals(hero.id(), response.getId());
+		assertEquals(hero.name(), response.getName());
 	}
 	
 	@Test

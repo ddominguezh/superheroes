@@ -33,6 +33,7 @@ public class H2HeroRepositoryTest {
 		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
 		assertTrue(hero.isPresent());
 		assertEquals(heroId, hero.get().id());
+		assertEquals("Spiderman", hero.get().name());
 	}
 	
 	@Test
