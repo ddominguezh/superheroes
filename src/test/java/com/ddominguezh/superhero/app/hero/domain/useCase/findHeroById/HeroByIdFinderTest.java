@@ -16,9 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
-import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroResponse;
-import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.OneHeroFinder;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -19,7 +18,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
-import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
 import com.ddominguezh.superhero.app.hero.domain.useCase.findHeroById.HeroByIdFinder;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
