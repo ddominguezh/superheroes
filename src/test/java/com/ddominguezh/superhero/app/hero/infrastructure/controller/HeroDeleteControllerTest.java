@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 
 @RunWith(SpringRunner.class)
