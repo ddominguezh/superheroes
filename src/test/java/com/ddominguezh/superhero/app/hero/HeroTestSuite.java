@@ -8,6 +8,7 @@ import com.ddominguezh.superhero.app.hero.application.useCase.deleteHero.HeroDel
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.OneHeroFinderTest;
 import com.ddominguezh.superhero.app.hero.domain.useCase.findHeroById.HeroByIdFinderTest;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroIdTest;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroNameTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroDeleteControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroGetControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroRepositoryTest;
@@ -19,6 +20,7 @@ import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroReposi
 			OneHeroFinderTest.class,
 			HeroByIdFinderTest.class,
 			HeroIdTest.class,
+			HeroNameTest.class,
 			HeroDeleteControllerTest.class,
 			HeroGetControllerTest.class,
 			H2HeroRepositoryTest.class
