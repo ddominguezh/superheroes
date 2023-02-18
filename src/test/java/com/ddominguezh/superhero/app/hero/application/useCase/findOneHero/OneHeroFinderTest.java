@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.Test;
@@ -36,14 +37,14 @@ public class OneHeroFinderTest {
 	@Test
 	public void get_hero() {
 		Hero hero = HeroMother.randomHero();
-		when(repository.findById(any(HeroId.class))).thenReturn(hero);
+		when(repository.findById(any(HeroId.class))).thenReturn(Optional.of(hero));
 		FindOneHeroResponse response = finder.invoke(new FindOneHeroQuery(hero.id()));
 		assertEquals(hero.id(), response.getId());
 	}
 	
 	@Test
 	public void hero_not_found() {
-		when(repository.findById(any(HeroId.class))).thenReturn(null);
+		when(repository.findById(any(HeroId.class))).thenReturn(Optional.empty());
 		assertThrows(HeroNotFoundException.class, () -> finder.invoke(new FindOneHeroQuery(UUID.randomUUID().toString())));
 	}
 }
