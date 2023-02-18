@@ -1,8 +1,9 @@
 package com.ddominguezh.superhero.app.color.infrastructure.controller;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +18,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.ddominguezh.superhero.app.color.application.useCase.findColor.ColorResponse;
 import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorResponse;
+import com.ddominguezh.superhero.app.color.domain.Color;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -49,6 +52,21 @@ public class ColorGetControllerTest {
 				.getContentAsString();
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		FindColorResponse colors = gson.fromJson(response, FindColorResponse.class);
-		assertTrue(colors.getSize() > 0);
+		
+		List<ColorResponse> expected = new ArrayList<ColorResponse>() {
+			{
+				add(ColorResponse.from(Color.create(1, "blue")));
+				add(ColorResponse.from(Color.create(2, "green")));
+				add(ColorResponse.from(Color.create(3, "yellow")));
+				add(ColorResponse.from(Color.create(4, "black")));
+				add(ColorResponse.from(Color.create(5, "white")));
+				add(ColorResponse.from(Color.create(6, "red")));
+			}
+		};
+		
+		assertEquals(expected.size(), colors.getSize());
+		for(int i = 0 ; i < expected.size() ; i++) {
+			assertEquals(expected.get(i), colors.getColors().get(i));
+		}
 	}
 }

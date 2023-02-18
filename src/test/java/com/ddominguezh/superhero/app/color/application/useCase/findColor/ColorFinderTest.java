@@ -53,8 +53,8 @@ public class ColorFinderTest {
 		for(int i = 0 ; i < response.getSize() ; i++ ) {
 			Color color = colors.get(i);
 			ColorResponse colorResponse = response.getColors().get(i);
-			assertEquals(color.getId(), colorResponse.getId());
-			assertEquals(color.getName(), colorResponse.getName());
+			assertEquals(color.id(), colorResponse.getId());
+			assertEquals(color.name(), colorResponse.getName());
 		}
 	}
 }
