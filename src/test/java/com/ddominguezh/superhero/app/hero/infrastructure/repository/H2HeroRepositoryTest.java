@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
@@ -20,6 +21,7 @@ import com.ddominguezh.superhero.shared.SuperheroApplication;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = SuperheroApplication.class)
+@Transactional
 public class H2HeroRepositoryTest {
 
 	private static final String heroId = "7f675eca-afbf-11ed-afa1-0242ac120002";
