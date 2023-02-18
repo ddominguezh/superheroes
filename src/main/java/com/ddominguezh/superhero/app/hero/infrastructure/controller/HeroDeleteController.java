@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ddominguezh.superhero.app.hero.application.useCase.deleteHero.DeleteHeroCommand;
+import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
@@ -32,12 +35,16 @@ public class HeroDeleteController extends ApiController{
 		)
 	@ResponseBody
 	public void index(@PathVariable("id") String id) throws Exception{
-		
+		dispatch(new DeleteHeroCommand(id));
 	}
 
 	@Override
 	public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {
-		return new HashMap<Class<? extends DomainError>, HttpStatus>();
+		return new HashMap<Class<? extends DomainError>, HttpStatus>(){
+			{
+				put(HeroNotFoundException.class, HttpStatus.NOT_FOUND);
+			}
+		};
 	}
 
 }
