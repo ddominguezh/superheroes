@@ -22,12 +22,12 @@ import com.ddominguezh.superhero.shared.SuperheroApplication;
 @ContextConfiguration(classes = SuperheroApplication.class)
 public class H2HeroRepositoryTest {
 
+	private static final String heroId = "7f675eca-afbf-11ed-afa1-0242ac120002";
 	@Autowired
 	private H2HeroRepository repository;
 	
 	@Test
 	public void hero_detail() {
-		String heroId = "7f675eca-afbf-11ed-afa1-0242ac120002";
 		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
 		assertTrue(hero.isPresent());
 		assertEquals(heroId, hero.get().id());
@@ -36,6 +36,14 @@ public class H2HeroRepositoryTest {
 	@Test
 	public void hero_not_found() {
 		Optional<Hero> hero = repository.findById(HeroId.create(UUID.randomUUID().toString()));
+		assertTrue(hero.isEmpty());
+	}
+	
+	@Test
+	public void delete_hero() {
+		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
+		repository.delete(hero.get());
+		hero = repository.findById(HeroId.create(heroId));
 		assertTrue(hero.isEmpty());
 	}
 }
