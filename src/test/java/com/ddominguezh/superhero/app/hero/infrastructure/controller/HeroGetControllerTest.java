@@ -18,8 +18,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderResponse;
-import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroResponse;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 import com.google.gson.Gson;

@@ -1,8 +1,12 @@
 package com.ddominguezh.superhero.app.hero.domain.exception;
 
-public class HeroNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+import com.ddominguezh.superhero.shared.domain.DomainError;
+
+public class HeroNotFoundException extends DomainError {
 
 	public HeroNotFoundException() {
-		super("Hero not found");
+		super(HttpStatus.NOT_FOUND.value()+"", "Hero not found");
 	}
 }

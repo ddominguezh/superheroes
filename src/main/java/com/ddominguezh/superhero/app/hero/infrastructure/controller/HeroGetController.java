@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroResponse;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
@@ -39,7 +40,11 @@ public class HeroGetController extends ApiController{
 
 	@Override
 	public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {
-		return new HashMap<Class<? extends DomainError>, HttpStatus>();
+		return new HashMap<Class<? extends DomainError>, HttpStatus>(){
+			{
+				put(HeroNotFoundException.class, HttpStatus.NOT_FOUND);
+			}
+		};
 	}
 
 }
