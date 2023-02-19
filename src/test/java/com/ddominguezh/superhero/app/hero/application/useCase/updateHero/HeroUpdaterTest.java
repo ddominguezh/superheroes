@@ -14,9 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ddominguezh.superhero.app.hero.application.useCase.createHero.CreateHeroCommand;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroColorNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
@@ -116,6 +116,31 @@ public class HeroUpdaterTest {
 		when(colorFinder.invoke(HeroColorId.create(hero.hairColorId()))).thenReturn(hairColor);
 		
 		assertThrows(HeroGenderNotFoundException.class, () -> updater.invoke(
+				new UpdateHeroCommand(
+						userId, 
+						hero.genderId(),
+						hero.eyeColorId(),
+						hero.hairColorId(),
+						hero.name(), 
+						hero.height(), 
+						hero.weight()
+					)
+				));
+		verify(repository, times(0)).update(any(Hero.class));
+	}
+	
+	@Test
+	public void hero_eye_color_not_found() {
+		Hero hero = HeroMother.randomHero();
+		
+		when(heroFinder.invoke(HeroId.create(userId))).thenReturn(hero);
+		HeroGender gender = HeroMother.randomHeroGender();
+		when(genderFinder.invoke(any(HeroGenderId.class))).thenReturn(gender);
+		when(colorFinder.invoke(HeroColorId.create(hero.eyeColorId()))).thenThrow(HeroColorNotFoundException.class);
+		HeroColor hairColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.hairColorId()))).thenReturn(hairColor);
+		
+		assertThrows(HeroColorNotFoundException.class, () -> updater.invoke(
 				new UpdateHeroCommand(
 						userId, 
 						hero.genderId(),
