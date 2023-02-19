@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.SessionFactory;
 
 import com.ddominguezh.superhero.shared.domain.Identifier;
+import com.ddominguezh.superhero.shared.domain.IntValueObject;
 import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
 
 public abstract class HibernateRepository<T> {
@@ -31,7 +32,7 @@ public abstract class HibernateRepository<T> {
         return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(id));
     }
     
-    protected Optional<T> byId(int id) {
+    protected Optional<T> byId(IntValueObject id) {
         return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(id));
     }
 

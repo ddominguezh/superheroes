@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
+import com.ddominguezh.superhero.app.hero.domain.useCase.findGenderById.GenderByIdFinder;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGender;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderId;
 
 @Service
 public class HeroCreator {
@@ -12,12 +15,16 @@ public class HeroCreator {
 	@Autowired
 	private HeroRepository repository;
 	
+	@Autowired
+	private GenderByIdFinder genderFinder;
+	
 	public void invoke(CreateHeroCommand command) {
+		HeroGender gender = genderFinder.invoke(HeroGenderId.create(command.getGenderId()));
 		repository.create(
 				Hero.create(
 						command.getId(), 
-						command.getGenderId(),
-						null,
+						gender.id(),
+						gender.name(),
 						command.getEyeColorId(),
 						null,
 						command.getHairColorId(),
