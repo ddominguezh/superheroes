@@ -1,11 +1,13 @@
 package com.ddominguezh.superhero.shared.infrastructure.hibernate;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.criteria.CriteriaQuery;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.query.NativeQuery;
 
 import com.ddominguezh.superhero.shared.domain.Identifier;
 import com.ddominguezh.superhero.shared.domain.IntValueObject;
@@ -48,6 +50,14 @@ public abstract class HibernateRepository<T> {
         criteria.from(aggregateClass);
 
         return sessionFactory.getCurrentSession().createQuery(criteria).getResultList();
+    }
+    
+    protected List<T> byNativeQuery(String sqlString, Map<String, Object> parameters){
+    	NativeQuery<T> query = sessionFactory.getCurrentSession().createNativeQuery(sqlString, aggregateClass);
+    	parameters.keySet().stream().forEach(key -> {
+    		query.setParameter(key, parameters.get(key));
+    	});
+    	return query.getResultList();
     }
     
     protected void update(T entity) {

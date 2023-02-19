@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
 import com.ddominguezh.superhero.shared.domain.criteria.Filter;
@@ -92,17 +93,13 @@ public class H2HeroRepositoryTest {
 	
 	@Test
 	public void get_all_heroes() {
-		List<Hero> heroes = repository.findAll(new Criteria(new Filters(new ArrayList<Filter>()), Order.asc("id")));
+		List<Hero> heroes = repository.findAll();
 		assertEquals(3, heroes.size());
 	}
 	
 	@Test
 	public void get_all_heroes_contains_name() {
-		List<Hero> heroes = repository.findAll(new Criteria(new Filters(new ArrayList<Filter>() {
-			{
-				add(Filter.create("name", FilterOperator.CONTAINS.value(), "man"));
-			}
-		}), Order.asc("id")));
+		List<Hero> heroes = repository.findAll(HeroName.create("man"));
 		assertEquals(2, heroes.size());
 	}
 }
