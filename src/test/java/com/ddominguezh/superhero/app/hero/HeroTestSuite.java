@@ -17,6 +17,7 @@ import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroDeleteCo
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroGetControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroPostControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroPutControllerTest;
+import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroesGetControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroColorRepositoryTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroGenderRepositoryTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroRepositoryTest;
@@ -34,6 +35,7 @@ import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroReposi
 			HeroIdTest.class,
 			HeroNameTest.class,
 			HeroDeleteControllerTest.class,
+			HeroesGetControllerTest.class,
 			HeroGetControllerTest.class,
 			HeroPostControllerTest.class,
 			HeroPutControllerTest.class,
