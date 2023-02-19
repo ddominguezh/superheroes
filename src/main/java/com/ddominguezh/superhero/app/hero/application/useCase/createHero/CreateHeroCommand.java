@@ -11,7 +11,7 @@ public class CreateHeroCommand implements Command {
 	private String name;
 	private int height;
 	private int weight;
-	protected CreateHeroCommand(String id, int genderId, int eyeColorId, int hairColorId, String name, int height, int weight) {
+	public CreateHeroCommand(String id, int genderId, int eyeColorId, int hairColorId, String name, int height, int weight) {
 		this.id = id;
 		this.genderId = genderId;
 		this.eyeColorId = eyeColorId;
