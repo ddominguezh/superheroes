@@ -17,11 +17,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroColorNotFoundException;
-import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroColorRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColor;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColorId;
-import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderId;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 
 @RunWith(SpringRunner.class)
