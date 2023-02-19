@@ -41,7 +41,7 @@ public abstract class StringValueObject implements Serializable {
         return Objects.hash(value);
     }
     
-    public static String Empty() {
+    public static String empty() {
     	return "";
     }
 }

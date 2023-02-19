@@ -37,7 +37,7 @@ public abstract class IntValueObject implements Serializable {
 		return value == other.value;
 	}
 	
-	public static int Empty() {
+	public static int empty() {
 		return Integer.MIN_VALUE;
 	}
     

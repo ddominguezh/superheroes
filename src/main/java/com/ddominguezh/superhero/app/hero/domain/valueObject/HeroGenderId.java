@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.IntValueObject;
 public class HeroGenderId extends IntValueObject{
 
 	public HeroGenderId() {
-		super(IntValueObject.Empty());
+		super(IntValueObject.empty());
 	}
 	public HeroGenderId(int value) {
 		super(value);

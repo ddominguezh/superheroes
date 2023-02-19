@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.StringValueObject;
 public class HeroGenderName extends StringValueObject {
 
 	public HeroGenderName() {
-		super(StringValueObject.Empty());
+		super(StringValueObject.empty());
 	}
 	public HeroGenderName(String value) {
 		super(value);

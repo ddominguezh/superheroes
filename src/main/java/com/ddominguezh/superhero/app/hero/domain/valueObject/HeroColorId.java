@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.IntValueObject;
 public class HeroColorId extends IntValueObject{
 
 	public HeroColorId() {
-		super(IntValueObject.Empty());
+		super(IntValueObject.empty());
 	}
 	public HeroColorId(int value) {
 		super(value);

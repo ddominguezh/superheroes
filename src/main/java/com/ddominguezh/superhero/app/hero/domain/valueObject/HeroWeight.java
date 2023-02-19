@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.IntValueObject;
 public class HeroWeight extends IntValueObject {
 
 	public HeroWeight() {
-		super(IntValueObject.Empty());
+		super(IntValueObject.empty());
 	}
 	
 	protected HeroWeight(int value) {

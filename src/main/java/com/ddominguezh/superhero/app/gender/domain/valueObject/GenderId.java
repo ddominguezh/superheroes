@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.IntValueObject;
 public class GenderId extends IntValueObject {
 
 	public GenderId() {
-		this(IntValueObject.Empty());
+		this(IntValueObject.empty());
 	}
 	protected GenderId(int value) {
 		super(value);

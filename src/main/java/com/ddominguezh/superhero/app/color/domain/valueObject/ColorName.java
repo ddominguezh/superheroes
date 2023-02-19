@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.StringValueObject;
 public class ColorName extends StringValueObject {
 
 	public ColorName(){
-		this(StringValueObject.Empty());
+		this(StringValueObject.empty());
 	}
 	protected ColorName(String value) {
 		super(value);

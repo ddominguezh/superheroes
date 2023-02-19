@@ -8,7 +8,7 @@ public class HeroName extends StringValueObject {
 	private static int MIN_LENGTH = 1;
 	private static int MAX_LENGTH = 255;
 	public HeroName() {
-		super(StringValueObject.Empty());
+		super(StringValueObject.empty());
 	}
 	
 	protected HeroName(String value) {

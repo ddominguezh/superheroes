@@ -5,7 +5,7 @@ import com.ddominguezh.superhero.shared.domain.IntValueObject;
 public class ColorId extends IntValueObject {
 
 	public ColorId(){
-		this(IntValueObject.Empty());
+		this(IntValueObject.empty());
 	}
 	protected ColorId(int value) {
 		super(value);
