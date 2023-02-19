@@ -14,10 +14,6 @@ public class HeroName extends StringValueObject {
 	protected HeroName(String value) {
 		super(value);
 	}
-
-	public static HeroName create() {
-		return new HeroName();
-	}
 	
 	public static HeroName create(String name) {
 		if(name == null || name.length() < MIN_LENGTH || name.length() > MAX_LENGTH) {

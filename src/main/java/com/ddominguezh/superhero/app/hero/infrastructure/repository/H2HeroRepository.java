@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
-import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName;
+import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
 import com.ddominguezh.superhero.shared.infrastructure.hibernate.HibernateRepository;
 
 @Repository
@@ -43,7 +43,7 @@ public class H2HeroRepository extends HibernateRepository<Hero> implements HeroR
 	}
 
 	@Override
-	public List<Hero> findAll(HeroName any) {
+	public List<Hero> findAll(Criteria criteria) {
 		// TODO Auto-generated method stub
 		return null;
 	}

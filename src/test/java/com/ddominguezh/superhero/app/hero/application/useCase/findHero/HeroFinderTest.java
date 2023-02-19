@@ -17,8 +17,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
-import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,7 +34,7 @@ public class HeroFinderTest {
 	@Test
 	public void get_heroes() {
 		List<Hero> heroes = HeroMother.randomHeroes();
-		when(repository.findAll(any(HeroName.class))).thenReturn(heroes);
+		when(repository.findAll(any(Criteria.class))).thenReturn(heroes);
 		FindHeroResponse response = finder.invoke(new FindHeroQuery(null));
 		assertEquals(heroes.size(), response.getSize());
 		for(int i = 0 ; i < heroes.size() ; i++ ) {
