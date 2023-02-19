@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ddominguezh.superhero.app.hero.application.useCase.findHero.FindHeroQuery;
 import com.ddominguezh.superhero.app.hero.application.useCase.findHero.FindHeroResponse;
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
+import com.ddominguezh.superhero.shared.domain.Authorization;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
+import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
 import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
 @Controller(value="HeroesGetController")
@@ -37,7 +39,7 @@ public class HeroesGetController extends ApiController {
 			produces = MediaType.APPLICATION_JSON_VALUE
 		)
 	@ResponseBody
-	public FindHeroResponse index(@RequestParam(value = "name", defaultValue = "") String name) throws Exception{
+	public FindHeroResponse index(@RequestParam(value = "name", defaultValue = "") String name, @RequestAuthorization Authorization authorization) throws Exception{
 		return ask(new FindHeroQuery(name));
 	}
 

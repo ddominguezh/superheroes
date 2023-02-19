@@ -19,9 +19,11 @@ import com.ddominguezh.superhero.app.hero.domain.exception.HeroIdFormatException
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNameFormatException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.request.HeroRequest;
+import com.ddominguezh.superhero.shared.domain.Authorization;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
+import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
 import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
 @Controller(value="HeroPutController")
@@ -39,7 +41,7 @@ public class HeroPutController extends ApiController{
 			produces = MediaType.APPLICATION_JSON_VALUE
 		)
 	@ResponseBody
-	public void index(@PathVariable("id") String id, @RequestBody HeroRequest hero) throws Exception{
+	public void index(@PathVariable("id") String id, @RequestBody HeroRequest hero, @RequestAuthorization Authorization authorization) throws Exception{
 		dispatch(
 				new UpdateHeroCommand(
 					id,

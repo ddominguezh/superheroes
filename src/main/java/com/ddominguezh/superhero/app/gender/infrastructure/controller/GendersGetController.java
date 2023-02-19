@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderQuery;
 import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderResponse;
+import com.ddominguezh.superhero.shared.domain.Authorization;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
+import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
 import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
 @Controller(value="GendersGetController")
@@ -32,7 +34,7 @@ public class GendersGetController extends ApiController{
 			produces = MediaType.APPLICATION_JSON_VALUE
 		)
 	@ResponseBody
-	public FindGenderResponse index() throws Exception{
+	public FindGenderResponse index(@RequestAuthorization Authorization authorization) throws Exception{
 		return ask(new FindGenderQuery());
 	}
 

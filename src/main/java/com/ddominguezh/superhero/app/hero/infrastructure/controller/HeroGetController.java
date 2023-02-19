@@ -15,9 +15,11 @@ import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOn
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroResponse;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroIdFormatException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
+import com.ddominguezh.superhero.shared.domain.Authorization;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
+import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
 import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
 @Controller(value="HeroGetController")
@@ -35,7 +37,7 @@ public class HeroGetController extends ApiController{
 			produces = MediaType.APPLICATION_JSON_VALUE
 		)
 	@ResponseBody
-	public FindOneHeroResponse index(@PathVariable("id") String id) throws Exception{
+	public FindOneHeroResponse index(@PathVariable("id") String id, @RequestAuthorization Authorization authorization) throws Exception{
 		return ask(new FindOneHeroQuery(id));
 	}
 
