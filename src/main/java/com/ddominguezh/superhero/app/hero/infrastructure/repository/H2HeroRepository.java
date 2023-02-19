@@ -37,8 +37,7 @@ public class H2HeroRepository extends HibernateRepository<Hero> implements HeroR
 
 	@Override
 	public void update(Hero hero) {
-		// TODO Auto-generated method stub
-		
+		super.persist(hero);
 	}
 
 }

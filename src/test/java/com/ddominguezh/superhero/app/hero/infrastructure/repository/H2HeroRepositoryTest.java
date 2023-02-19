@@ -69,10 +69,9 @@ public class H2HeroRepositoryTest {
 	
 	@Test
 	public void update_hero() {
-		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
 		Hero updadaHero = HeroMother.randomHeroWithId(heroId);
 		repository.update(updadaHero);
-		hero = repository.findById(HeroId.create(heroId));
+		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
 		assertTrue(hero.isPresent());
 		assertEquals(updadaHero.id(), hero.get().id());
 		assertEquals(updadaHero.genderId(), hero.get().genderId());
