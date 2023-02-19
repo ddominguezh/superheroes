@@ -22,6 +22,7 @@ import com.ddominguezh.superhero.app.color.application.useCase.findColor.ColorRe
 import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorResponse;
 import com.ddominguezh.superhero.app.color.domain.Color;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.infrastructure.controller.WithAuthorizationController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -29,7 +30,7 @@ import com.google.gson.GsonBuilder;
 @SpringBootTest
 @ContextConfiguration(classes = SuperheroApplication.class)
 @AutoConfigureMockMvc
-public class ColorsGetControllerTest {
+public class ColorsGetControllerTest extends WithAuthorizationController {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -38,7 +39,7 @@ public class ColorsGetControllerTest {
 	public void ping_color_endpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.header("Authorization", "Bearer MTIzYTRkZjgtYjA2OS0xMWVkLWFmYTEtMDI0MmFjMTIwMDAy"))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
@@ -46,7 +47,7 @@ public class ColorsGetControllerTest {
 	public void color_endpoint_unauthorized() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.header("Authorization", "Bearer MTIzYTRkZjgtYjA2OS0xMWVkLWFmYTEtMDI0MmFjMTIwMDAdy"))
+				.header("Authorization", unauthorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
@@ -54,7 +55,7 @@ public class ColorsGetControllerTest {
 	public void get_all_colors() throws Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.header("Authorization", "Bearer MTIzYTRkZjgtYjA2OS0xMWVkLWFmYTEtMDI0MmFjMTIwMDAy"))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
 				.andReturn()
