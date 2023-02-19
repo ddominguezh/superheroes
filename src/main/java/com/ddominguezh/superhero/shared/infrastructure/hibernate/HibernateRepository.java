@@ -30,6 +30,10 @@ public abstract class HibernateRepository<T> {
     protected Optional<T> byId(Identifier id) {
         return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(id));
     }
+    
+    protected Optional<T> byId(int id) {
+        return Optional.ofNullable(sessionFactory.getCurrentSession().byId(aggregateClass).load(id));
+    }
 
     protected List<T> byCriteria(Criteria criteria) {
         CriteriaQuery<T> hibernateCriteria = criteriaConverter.convert(criteria, aggregateClass);
