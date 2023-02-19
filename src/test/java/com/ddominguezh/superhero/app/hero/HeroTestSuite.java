@@ -11,6 +11,7 @@ import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroIdTest;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroNameTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroDeleteControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroGetControllerTest;
+import com.ddominguezh.superhero.app.hero.infrastructure.controller.HeroPostControllerTest;
 import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroRepositoryTest;
 
 @SelectClasses(
@@ -23,6 +24,7 @@ import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroReposi
 			HeroNameTest.class,
 			HeroDeleteControllerTest.class,
 			HeroGetControllerTest.class,
+			HeroPostControllerTest.class,
 			H2HeroRepositoryTest.class
 		}
 	)
