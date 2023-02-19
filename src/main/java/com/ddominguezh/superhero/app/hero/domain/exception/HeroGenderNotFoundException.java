@@ -6,8 +6,8 @@ import com.ddominguezh.superhero.shared.domain.DomainError;
 
 public class HeroGenderNotFoundException extends DomainError {
 
-	public HeroGenderNotFoundException() {
-		super(HttpStatus.NOT_FOUND.value() + "", "Hero Gender Not Found");
+	public HeroGenderNotFoundException(int id) {
+		super(HttpStatus.NOT_FOUND.value() + "", "Hero Gender (" + id +  ") Not Found");
 	}
 
 }
