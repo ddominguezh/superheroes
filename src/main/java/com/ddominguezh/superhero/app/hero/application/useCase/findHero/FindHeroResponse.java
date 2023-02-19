@@ -1,5 +1,6 @@
 package com.ddominguezh.superhero.app.hero.application.useCase.findHero;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,9 +14,11 @@ public class FindHeroResponse implements Response {
 		this.heroes = heroes;
 	}
 	public static FindHeroResponse from(List<Hero> heroes) {
-		return new FindHeroResponse(
-				heroes.stream().map(hero -> HeroResponse.from(hero)).collect(Collectors.toList())
-			); 
+		List<HeroResponse> heroesResponse = new ArrayList<HeroResponse>();
+		if(heroes != null) {
+			heroesResponse = heroes.stream().map(hero -> HeroResponse.from(hero)).collect(Collectors.toList());
+		}
+		return new FindHeroResponse(heroesResponse); 
 	}
 	public List<HeroResponse> getHeroes() {
 		return this.heroes;

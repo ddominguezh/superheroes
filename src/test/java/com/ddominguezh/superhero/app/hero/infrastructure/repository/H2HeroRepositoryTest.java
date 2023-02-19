@@ -3,9 +3,12 @@ package com.ddominguezh.superhero.app.hero.infrastructure.repository;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.hibernate.query.Query;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,11 @@ import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
+import com.ddominguezh.superhero.shared.domain.criteria.Filter;
+import com.ddominguezh.superhero.shared.domain.criteria.FilterOperator;
+import com.ddominguezh.superhero.shared.domain.criteria.Filters;
+import com.ddominguezh.superhero.shared.domain.criteria.Order;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -80,5 +88,21 @@ public class H2HeroRepositoryTest {
 		assertEquals(updadaHero.name(), hero.get().name());
 		assertEquals(updadaHero.height(), hero.get().height());
 		assertEquals(updadaHero.weight(), hero.get().weight());
+	}
+	
+	@Test
+	public void get_all_heroes() {
+		List<Hero> heroes = repository.findAll(new Criteria(new Filters(new ArrayList<Filter>()), Order.asc("id")));
+		assertEquals(3, heroes.size());
+	}
+	
+	@Test
+	public void get_all_heroes_contains_name() {
+		List<Hero> heroes = repository.findAll(new Criteria(new Filters(new ArrayList<Filter>() {
+			{
+				add(Filter.create("name", FilterOperator.CONTAINS.value(), "man"));
+			}
+		}), Order.asc("id")));
+		assertEquals(2, heroes.size());
 	}
 }

@@ -44,8 +44,7 @@ public class H2HeroRepository extends HibernateRepository<Hero> implements HeroR
 
 	@Override
 	public List<Hero> findAll(Criteria criteria) {
-		// TODO Auto-generated method stub
-		return null;
+		return byCriteria(criteria);
 	}
 	
 }

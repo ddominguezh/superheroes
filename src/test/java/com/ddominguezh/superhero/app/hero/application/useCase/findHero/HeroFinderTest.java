@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -14,6 +15,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderQuery;
+import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderResponse;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
@@ -30,6 +33,20 @@ public class HeroFinderTest {
 	
 	@Mock
 	public HeroRepository repository;
+	
+	@Test
+	public void get_empty_heroes_list() {
+		when(repository.findAll(any(Criteria.class))).thenReturn(new ArrayList<Hero>());
+		FindHeroResponse response = finder.invoke(new FindHeroQuery(null));
+		assertEquals(0, response.getSize());
+	}
+	
+	@Test
+	public void get_emtpy_heroes_list_when_retun_null() {
+		when(repository.findAll(any(Criteria.class))).thenReturn(null);
+		FindHeroResponse response = finder.invoke(new FindHeroQuery(null));
+		assertEquals(0, response.getSize());
+	}
 	
 	@Test
 	public void get_heroes() {
