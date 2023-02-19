@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ddominguezh.superhero.shared.domain.config.annotations.Traceable;
+
 @Controller(value="CheckHealthGetController")
 @RequestMapping("check-health")
 public class CheckHealthGetController {
 
+	@Traceable
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET)
 	@ResponseBody
