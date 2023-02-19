@@ -3,7 +3,9 @@ package com.ddominguezh.superhero.app.hero.infrastructure.repository;
 import java.util.Optional;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroGenderRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGender;
@@ -11,15 +13,17 @@ import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderId;
 import com.ddominguezh.superhero.shared.infrastructure.hibernate.HibernateRepository;
 
 @Repository
+@Transactional("transaction_manager")
 public class H2HeroGenderRepository extends HibernateRepository<HeroGender> implements HeroGenderRepository {
 
-	public H2HeroGenderRepository(SessionFactory sessionFactory) {
+	public H2HeroGenderRepository(@Qualifier("session_factory") SessionFactory sessionFactory) {
 		super(sessionFactory, HeroGender.class);
 	}
 
+	@SuppressWarnings("serial")
 	@Override
 	public Optional<HeroGender> findById(HeroGenderId id) {
-		return byId(id.value());
+		return super.byId(id);
 	}
 
 }
