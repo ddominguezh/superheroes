@@ -4,12 +4,12 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.ddominguezh.superhero.app.color.domain.Color" table="color">
-    	<composite-id name="id" class="com.ddominguezh.superhero.app.color.domain.valueObject.ColorId" access="field">
+    <class name="com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGender" table="gender">
+    	<composite-id name="id" class="com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderId" access="field">
     		<key-property name="value" column="id" type="int" access="field" />
     	</composite-id>
-        <component name="name" class="com.ddominguezh.superhero.app.color.domain.valueObject.ColorName" access="field">
+        <component name="name" class="com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderName" access="field">
         	<property name="value" column="name" type="string" access="field" />
-        </component>
+        </component>   
     </class>
 </hibernate-mapping>

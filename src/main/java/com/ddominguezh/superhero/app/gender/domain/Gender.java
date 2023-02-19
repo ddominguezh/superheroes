@@ -9,10 +9,10 @@ public class Gender {
 
 	private GenderId id;
 	private GenderName name;
-	protected Gender() {
+	public Gender() {
 		this(
-			GenderId.create(IntValueObject.Empty()), 
-			GenderName.create(StringValueObject.Empty())
+			new GenderId(), 
+			new GenderName()
 		);
 	}
 	protected Gender(GenderId id, GenderName name) {

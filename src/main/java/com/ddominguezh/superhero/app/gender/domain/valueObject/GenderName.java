@@ -7,7 +7,7 @@ public class GenderName extends StringValueObject {
 	public GenderName() {
 		this(StringValueObject.Empty());
 	}
-	public GenderName(String value) {
+	protected GenderName(String value) {
 		super(value);
 	}
 

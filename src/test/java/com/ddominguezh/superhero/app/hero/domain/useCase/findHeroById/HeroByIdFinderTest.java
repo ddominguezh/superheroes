@@ -40,6 +40,12 @@ public class HeroByIdFinderTest {
 		when(repository.findById(any(HeroId.class))).thenReturn(Optional.of(hero));
 		Hero response = finder.invoke(HeroId.create(hero.id()));
 		assertEquals(hero.id(), response.id());
+		assertEquals(hero.genderId(), response.genderId());
+		assertEquals(hero.genderName(), response.genderName());
+		assertEquals(hero.eyeColorId(), response.eyeColorId());
+		assertEquals(hero.eyeColorName(), response.eyeColorName());
+		assertEquals(hero.hairColorId(), response.hairColorId());
+		assertEquals(hero.hairColorName(), response.hairColorName());
 		assertEquals(hero.name(), response.name());
 		assertEquals(hero.height(), response.height());
 		assertEquals(hero.weight(), response.weight());

@@ -9,10 +9,10 @@ public class Color {
 
 	private ColorId id;
 	private ColorName name;
-	protected Color(){
+	public Color(){
 		this(
-			ColorId.create(IntValueObject.Empty()), 
-			ColorName.create(StringValueObject.Empty())
+			new ColorId(), 
+			new ColorName()
 		);
 	}
 	protected Color(ColorId id, ColorName name){

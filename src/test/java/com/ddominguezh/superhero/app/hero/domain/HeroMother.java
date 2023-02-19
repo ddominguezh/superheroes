@@ -10,7 +10,13 @@ public class HeroMother {
 	public static Hero randomHero() {
 		Random random = new Random();
 		return Hero.create(
-				UUID.randomUUID().toString(), 
+				UUID.randomUUID().toString(),
+				random.nextInt(3) + 1,
+				randomAlphabetic(20),
+				random.nextInt(5) + 1,
+				randomAlphabetic(20),
+				random.nextInt(5) + 1,
+				randomAlphabetic(20),
 				randomAlphabetic(50),
 				random.nextInt(250),
 				random.nextInt(100));

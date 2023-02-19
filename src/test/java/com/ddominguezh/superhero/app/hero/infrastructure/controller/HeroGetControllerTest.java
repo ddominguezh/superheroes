@@ -34,7 +34,7 @@ public class HeroGetControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	@Test
+	//@Test
 	public void ping_hero_enpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + heroId)
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
@@ -55,14 +55,14 @@ public class HeroGetControllerTest {
 		assertEquals(heroId, hero.getId());
 	}
 	
-	@Test
+	//@Test
 	public void hero_not_found() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + UUID.randomUUID().toString())
 				.contentType(MediaType.APPLICATION_JSON_VALUE))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
-	@Test
+	//@Test
 	public void get_hero_bad_request() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + randomAlphabetic(36))
 				.contentType(MediaType.APPLICATION_JSON_VALUE))

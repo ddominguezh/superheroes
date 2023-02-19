@@ -34,6 +34,12 @@ public class H2HeroRepositoryTest {
 		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
 		assertTrue(hero.isPresent());
 		assertEquals(heroId, hero.get().id());
+		assertEquals(3, hero.get().genderId());
+		assertEquals("MEN", hero.get().genderName());
+		assertEquals(4, hero.get().eyeColorId());
+		assertEquals("black", hero.get().eyeColorName());
+		assertEquals(2, hero.get().hairColorId());
+		assertEquals("green", hero.get().hairColorName());
 		assertEquals("Spiderman", hero.get().name());
 		assertEquals(165, hero.get().height());
 		assertEquals(80, hero.get().weight());

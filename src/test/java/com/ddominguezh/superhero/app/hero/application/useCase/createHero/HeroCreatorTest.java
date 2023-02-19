@@ -31,7 +31,17 @@ public class HeroCreatorTest {
 	@Test
 	public void create_hero() {
 		Hero hero = HeroMother.randomHero();
-		creator.invoke(new CreateHeroCommand(hero.id(), hero.name(), hero.height(), hero.weight()));
+		creator.invoke(
+				new CreateHeroCommand(
+						hero.id(), 
+						hero.genderId(),
+						hero.eyeColorId(),
+						hero.hairColorId(),
+						hero.name(), 
+						hero.height(), 
+						hero.weight()
+					)
+				);
 		verify(repository, times(1)).create(any(Hero.class));
 	}
 }

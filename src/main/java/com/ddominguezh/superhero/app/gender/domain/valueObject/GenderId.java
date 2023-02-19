@@ -7,7 +7,7 @@ public class GenderId extends IntValueObject {
 	public GenderId() {
 		this(IntValueObject.Empty());
 	}
-	public GenderId(int value) {
+	protected GenderId(int value) {
 		super(value);
 	}
 

@@ -16,6 +16,12 @@ public class HeroCreator {
 		repository.create(
 				Hero.create(
 						command.getId(), 
+						command.getGenderId(),
+						null,
+						command.getEyeColorId(),
+						null,
+						command.getHairColorId(),
+						null,
 						command.getName(),
 						command.getHeight(),
 						command.getWeight()
