@@ -1,5 +1,6 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
-import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName;
 import com.ddominguezh.superhero.shared.infrastructure.hibernate.HibernateRepository;
 
 @Repository
@@ -43,8 +44,19 @@ public class H2HeroRepository extends HibernateRepository<Hero> implements HeroR
 	}
 
 	@Override
-	public List<Hero> findAll(Criteria criteria) {
-		return byCriteria(criteria);
+	public List<Hero> findAll() {
+		return all();
 	}
+	
+	@SuppressWarnings("serial")
+	@Override
+	public List<Hero> findAll(HeroName name) {
+		return byNativeQuery("select * from hero where upper(name) like upper(:name)", new HashMap<String, Object>() {
+			{
+				put("name", "%" + name.value() + "%");
+			}
+		});
+	}
+	
 	
 }

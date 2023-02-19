@@ -11,4 +11,7 @@ public class FindHeroQuery implements Query {
 	public String getName() {
 		return this.name;
 	}
+	public boolean isEmpty() {
+		return this.name == null || "".equals(this.name);
+	}
 }
