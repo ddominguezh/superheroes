@@ -23,6 +23,7 @@ import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
 import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
 import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
+import com.ddominguezh.superhero.shared.domain.exception.AuthorizationException;
 import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
 @Controller(value="HeroPostController")
@@ -54,6 +55,7 @@ public class HeroPostController  extends ApiController{
 		);
 	}
 
+	@SuppressWarnings("serial")
 	@Override
 	public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {
 		return new HashMap<Class<? extends DomainError>, HttpStatus>(){
@@ -62,6 +64,7 @@ public class HeroPostController  extends ApiController{
 				put(HeroNameFormatException.class, HttpStatus.BAD_REQUEST);
 				put(HeroGenderNotFoundException.class, HttpStatus.NOT_FOUND);
 				put(HeroColorNotFoundException.class, HttpStatus.NOT_FOUND);
+				put(AuthorizationException.class, HttpStatus.UNAUTHORIZED);
 			}
 		};
 	}
