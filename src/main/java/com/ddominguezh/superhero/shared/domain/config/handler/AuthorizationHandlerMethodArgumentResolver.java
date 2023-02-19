@@ -9,13 +9,13 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
+import com.ddominguezh.superhero.shared.domain.Authorization;
 import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
 
 public class AuthorizationHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
 
 	private static Logger logger = Logger.getLogger(AuthorizationHandlerMethodArgumentResolver.class);
-	private static String BEARER = "Bearer ";
-
+	
 	@Override
 	public boolean supportsParameter(MethodParameter parameter) {
 		logger.debug("RequestAuthorization: " + (parameter.getParameterAnnotation(RequestAuthorization.class) != null));
@@ -28,7 +28,8 @@ public class AuthorizationHandlerMethodArgumentResolver implements HandlerMethod
 		HttpServletRequest request = (HttpServletRequest) webRequest.getNativeRequest();
 		
 		logger.debug("RequestAuthorization: " + (parameter.getParameterAnnotation(RequestAuthorization.class) != null));
-		return request.getHeader("Authorization");
+		
+		return new Authorization(request.getHeader("Authorization"));
 	}
 
 }
