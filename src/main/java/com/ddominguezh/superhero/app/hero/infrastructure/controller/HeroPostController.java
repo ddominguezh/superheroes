@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddominguezh.superhero.app.hero.application.useCase.createHero.CreateHeroCommand;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroIdFormatException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNameFormatException;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.request.HeroRequest;
@@ -57,6 +58,7 @@ public class HeroPostController  extends ApiController{
 			{
 				put(HeroIdFormatException.class, HttpStatus.BAD_REQUEST);
 				put(HeroNameFormatException.class, HttpStatus.BAD_REQUEST);
+				put(HeroGenderNotFoundException.class, HttpStatus.NOT_FOUND);
 			}
 		};
 	}
