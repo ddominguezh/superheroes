@@ -1,6 +1,7 @@
 package com.ddominguezh.superhero.app.hero.domain.useCase.findColorById;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -15,9 +16,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroColorNotFoundException;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroColorRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColor;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColorId;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderId;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
 
 @RunWith(SpringRunner.class)
@@ -38,5 +42,11 @@ public class ColorByIdFinderTest {
 		HeroColor response = finder.invoke(HeroColorId.create(color.id()));
 		assertEquals(color.id(), response.id());
 		assertEquals(color.name(), response.name());
+	}
+	
+	@Test
+	public void color_not_found() {
+		when(repository.findById(any(HeroColorId.class))).thenReturn(Optional.empty());
+		assertThrows(HeroColorNotFoundException.class, () -> finder.invoke(HeroColorId.create(Integer.MAX_VALUE)));
 	}
 }
