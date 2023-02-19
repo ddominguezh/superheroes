@@ -1,6 +1,7 @@
 package com.ddominguezh.superhero.app.hero.domain.useCase.findGenderById;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -15,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroGenderRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGender;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderId;
@@ -38,5 +40,11 @@ public class GenderByIdFinderTest {
 		HeroGender response = finder.invoke(HeroGenderId.create(gender.id()));
 		assertEquals(gender.id(), response.id());
 		assertEquals(gender.name(), response.name());
+	}
+	
+	@Test
+	public void gender_not_found() {
+		when(repository.findById(any(HeroGenderId.class))).thenReturn(Optional.empty());
+		assertThrows(HeroGenderNotFoundException.class, () -> finder.invoke(HeroGenderId.create(Integer.MAX_VALUE)));
 	}
 }
