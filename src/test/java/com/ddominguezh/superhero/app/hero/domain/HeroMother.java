@@ -25,8 +25,8 @@ public class HeroMother {
 	}
 
 	public static HeroGender randomHeroGender() {
-		// TODO Auto-generated method stub
-		return null;
+		Random random = new Random();
+		return HeroGender.create(random.nextInt(3) + 1, randomAlphabetic(20));
 	}
 
 }
