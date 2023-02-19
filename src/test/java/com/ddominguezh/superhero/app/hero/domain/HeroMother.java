@@ -11,10 +11,18 @@ import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGender;
 public class HeroMother {
 
 	public static Hero randomHero() {
+		return randomHero(UUID.randomUUID().toString());
+	}
+
+	public static Hero randomHeroWithId(String heroid) {
+		return randomHero(heroid);
+	}
+	
+	private static Hero randomHero(String heroid) {
 		Random random = new Random();
 		int eyeColor = random.nextInt(4) + 1;
 		return Hero.create(
-				UUID.randomUUID().toString(),
+				heroid,
 				random.nextInt(3) + 1,
 				randomAlphabetic(20),
 				eyeColor,
@@ -25,7 +33,7 @@ public class HeroMother {
 				random.nextInt(250),
 				random.nextInt(100));
 	}
-
+	
 	public static HeroGender randomHeroGender() {
 		Random random = new Random();
 		return HeroGender.create(random.nextInt(3) + 1, randomAlphabetic(20));
@@ -35,5 +43,7 @@ public class HeroMother {
 		Random random = new Random();
 		return HeroColor.create(random.nextInt(5) + 1, randomAlphabetic(20));
 	}
+
+	
 
 }

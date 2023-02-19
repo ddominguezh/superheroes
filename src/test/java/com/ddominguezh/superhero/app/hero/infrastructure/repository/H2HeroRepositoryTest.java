@@ -66,4 +66,20 @@ public class H2HeroRepositoryTest {
 		Optional<Hero> hero = repository.findById(HeroId.create(newHero.id()));
 		assertTrue(hero.isPresent());
 	}
+	
+	@Test
+	public void update_hero() {
+		Optional<Hero> hero = repository.findById(HeroId.create(heroId));
+		Hero updadaHero = HeroMother.randomHeroWithId(heroId);
+		repository.update(updadaHero);
+		hero = repository.findById(HeroId.create(heroId));
+		assertTrue(hero.isPresent());
+		assertEquals(updadaHero.id(), hero.get().id());
+		assertEquals(updadaHero.genderId(), hero.get().genderId());
+		assertEquals(updadaHero.eyeColorId(), hero.get().eyeColorId());
+		assertEquals(updadaHero.hairColorId(), hero.get().hairColorId());
+		assertEquals(updadaHero.name(), hero.get().name());
+		assertEquals(updadaHero.height(), hero.get().height());
+		assertEquals(updadaHero.weight(), hero.get().weight());
+	}
 }
