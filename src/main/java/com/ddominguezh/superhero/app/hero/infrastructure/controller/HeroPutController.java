@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ddominguezh.superhero.app.hero.application.useCase.updateHero.UpdateHeroCommand;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroColorNotFoundException;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroIdFormatException;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroNameFormatException;
+import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.request.HeroRequest;
 import com.ddominguezh.superhero.shared.domain.DomainError;
 import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
@@ -50,8 +55,15 @@ public class HeroPutController extends ApiController{
 
 	@Override
 	public HashMap<Class<? extends DomainError>, HttpStatus> errorMapping() {
-		// TODO Auto-generated method stub
-		return new HashMap<Class<? extends DomainError>, HttpStatus>();
+		return new HashMap<Class<? extends DomainError>, HttpStatus>(){
+			{
+				put(HeroNotFoundException.class, HttpStatus.NOT_FOUND);
+				put(HeroIdFormatException.class, HttpStatus.BAD_REQUEST);
+				put(HeroNameFormatException.class, HttpStatus.BAD_REQUEST);
+				put(HeroGenderNotFoundException.class, HttpStatus.NOT_FOUND);
+				put(HeroColorNotFoundException.class, HttpStatus.NOT_FOUND);
+			}
+		};
 	}
 
 }
