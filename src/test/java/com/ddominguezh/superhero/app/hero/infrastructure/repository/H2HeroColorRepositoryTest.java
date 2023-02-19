@@ -33,4 +33,10 @@ public class H2HeroColorRepositoryTest {
 		assertEquals(2, color.get().id());
 		assertEquals("green", color.get().name());
 	}
+	
+	@Test
+	public void color_not_found() {
+		Optional<HeroColor> color = repository.findById(HeroColorId.create(Integer.MAX_VALUE));
+		assertTrue(color.isEmpty());
+	}
 }
