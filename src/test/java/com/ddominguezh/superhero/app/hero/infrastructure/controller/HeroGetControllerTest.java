@@ -35,12 +35,20 @@ public class HeroGetControllerTest extends WithAuthorizationController {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	//@Test
-	public void ping_hero_enpoint() throws Exception {
+	@Test
+	public void ping_hero_endpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + heroId)
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
 				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void hero_endpoint_unauthorized() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + heroId)
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", unauthorizedToken()))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test
@@ -58,7 +66,7 @@ public class HeroGetControllerTest extends WithAuthorizationController {
 		assertEquals(heroId, hero.getId());
 	}
 	
-	//@Test
+	@Test
 	public void hero_not_found() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + UUID.randomUUID().toString())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -66,7 +74,7 @@ public class HeroGetControllerTest extends WithAuthorizationController {
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
-	//@Test
+	@Test
 	public void get_hero_bad_request() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + randomAlphabetic(36))
 				.contentType(MediaType.APPLICATION_JSON_VALUE)

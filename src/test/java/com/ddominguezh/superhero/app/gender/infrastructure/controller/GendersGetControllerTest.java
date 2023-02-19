@@ -36,11 +36,19 @@ public class GendersGetControllerTest extends WithAuthorizationController {
 	private MockMvc mockMvc;
 	
 	@Test
-	public void ping_gender_enpoint() throws Exception {
+	public void ping_gender_endpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/gender/all")
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
 				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void gender_endpoint_unauthorized() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/gender/all")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", unauthorizedToken()))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test

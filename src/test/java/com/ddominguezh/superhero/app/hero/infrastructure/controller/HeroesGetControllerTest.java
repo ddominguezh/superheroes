@@ -35,11 +35,19 @@ public class HeroesGetControllerTest extends WithAuthorizationController {
 	private MockMvc mockMvc;
 	
 	@Test
-	public void ping_heroes_enpoint() throws Exception {
+	public void ping_heroes_endpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/search")
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
 				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void heroes_endpoint_unauthorized() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/hero/search")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", unauthorizedToken()))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test

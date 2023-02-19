@@ -36,7 +36,7 @@ public class HeroPostControllerTest extends WithAuthorizationController {
 	private MockMvc mockMvc;
 	
 	@Test
-	public void ping_hero_enpoint() throws Exception {
+	public void ping_hero_endpoint() throws Exception {
 		Hero hero = HeroMother.randomHero();
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + UUID.randomUUID().toString())
@@ -44,6 +44,17 @@ public class HeroPostControllerTest extends WithAuthorizationController {
 				.content(gson.toJson(from(hero)))
 				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void hero_endpoint_unauthorized() throws Exception {
+		Hero hero = HeroMother.randomHero();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + UUID.randomUUID().toString())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(from(hero)))
+				.header("Authorization", unauthorizedToken()))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test

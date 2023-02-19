@@ -33,11 +33,19 @@ public class HeroDeleteControllerTest extends WithAuthorizationController {
 	private MockMvc mockMvc;
 	
 	@Test
-	public void ping_hero_enpoint() throws Exception {
+	public void ping_hero_endpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + heroId)
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
 				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void hero_endpoint_unauthorized() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + heroId)
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", unauthorizedToken()))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test
