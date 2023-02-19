@@ -12,13 +12,14 @@ public class HeroMother {
 
 	public static Hero randomHero() {
 		Random random = new Random();
+		int eyeColor = random.nextInt(4) + 1;
 		return Hero.create(
 				UUID.randomUUID().toString(),
 				random.nextInt(3) + 1,
 				randomAlphabetic(20),
-				random.nextInt(5) + 1,
+				eyeColor,
 				randomAlphabetic(20),
-				random.nextInt(5) + 1,
+				eyeColor + 1,
 				randomAlphabetic(20),
 				randomAlphabetic(50),
 				random.nextInt(250),

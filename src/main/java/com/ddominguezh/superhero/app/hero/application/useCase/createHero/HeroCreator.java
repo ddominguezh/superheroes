@@ -27,6 +27,7 @@ public class HeroCreator {
 	public void invoke(CreateHeroCommand command) {
 		HeroGender gender = genderFinder.invoke(HeroGenderId.create(command.getGenderId()));
 		HeroColor eyeColor = colorFinder.invoke(HeroColorId.create(command.getEyeColorId()));
+		HeroColor hairColor = colorFinder.invoke(HeroColorId.create(command.getHairColorId()));
 		repository.create(
 				Hero.create(
 						command.getId(), 
@@ -34,8 +35,8 @@ public class HeroCreator {
 						gender.name(),
 						eyeColor.id(),
 						eyeColor.name(),
-						command.getHairColorId(),
-						null,
+						hairColor.id(),
+						hairColor.name(),
 						command.getName(),
 						command.getHeight(),
 						command.getWeight()
