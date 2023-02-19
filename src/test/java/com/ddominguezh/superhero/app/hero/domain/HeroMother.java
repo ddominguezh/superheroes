@@ -2,6 +2,8 @@ package com.ddominguezh.superhero.app.hero.domain;
 
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -42,6 +44,14 @@ public class HeroMother {
 	public static HeroColor randomHeroColor() {
 		Random random = new Random();
 		return HeroColor.create(random.nextInt(5) + 1, randomAlphabetic(20));
+	}
+
+	public static List<Hero> randomHeroes() {
+		List<Hero> heroes = new ArrayList<Hero>();
+		for(int i = 0 ; i < new Random().nextInt(10) ; i++) {
+			heroes.add(randomHero());
+		}
+		return heroes;
 	}
 
 	

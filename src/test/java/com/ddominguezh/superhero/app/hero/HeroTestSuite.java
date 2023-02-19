@@ -5,6 +5,7 @@ import org.junit.platform.suite.api.Suite;
 
 import com.ddominguezh.superhero.app.hero.application.useCase.createHero.HeroCreatorTest;
 import com.ddominguezh.superhero.app.hero.application.useCase.deleteHero.HeroDeleterTest;
+import com.ddominguezh.superhero.app.hero.application.useCase.findHero.HeroFinderTest;
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.OneHeroFinderTest;
 import com.ddominguezh.superhero.app.hero.application.useCase.updateHero.HeroUpdaterTest;
 import com.ddominguezh.superhero.app.hero.domain.useCase.findColorById.ColorByIdFinderTest;
@@ -24,6 +25,7 @@ import com.ddominguezh.superhero.app.hero.infrastructure.repository.H2HeroReposi
 		{
 			HeroCreatorTest.class,
 			HeroDeleterTest.class,
+			HeroFinderTest.class,
 			HeroUpdaterTest.class,
 			OneHeroFinderTest.class,
 			ColorByIdFinderTest.class,
