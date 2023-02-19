@@ -153,4 +153,29 @@ public class HeroUpdaterTest {
 				));
 		verify(repository, times(0)).update(any(Hero.class));
 	}
+	
+	@Test
+	public void hero_hair_color_not_found() {
+		Hero hero = HeroMother.randomHero();
+		
+		when(heroFinder.invoke(HeroId.create(userId))).thenReturn(hero);
+		HeroGender gender = HeroMother.randomHeroGender();
+		when(genderFinder.invoke(any(HeroGenderId.class))).thenReturn(gender);
+		HeroColor eyeColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.eyeColorId()))).thenReturn(eyeColor);
+		when(colorFinder.invoke(HeroColorId.create(hero.hairColorId()))).thenThrow(HeroColorNotFoundException.class);
+		
+		assertThrows(HeroColorNotFoundException.class, () -> updater.invoke(
+				new UpdateHeroCommand(
+						userId, 
+						hero.genderId(),
+						hero.eyeColorId(),
+						hero.hairColorId(),
+						hero.name(), 
+						hero.height(), 
+						hero.weight()
+					)
+				));
+		verify(repository, times(0)).update(any(Hero.class));
+	}
 }
