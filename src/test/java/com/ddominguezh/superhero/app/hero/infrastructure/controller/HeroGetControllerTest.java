@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroResponse;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.infrastructure.controller.WithAuthorizationController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,7 +29,7 @@ import com.google.gson.GsonBuilder;
 @SpringBootTest
 @ContextConfiguration(classes = SuperheroApplication.class)
 @AutoConfigureMockMvc
-public class HeroGetControllerTest {
+public class HeroGetControllerTest extends WithAuthorizationController {
 
 	private static final String heroId = "7f675eca-afbf-11ed-afa1-0242ac120002";
 	@Autowired
@@ -37,14 +38,16 @@ public class HeroGetControllerTest {
 	//@Test
 	public void ping_hero_enpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + heroId)
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void get_hero() throws UnsupportedEncodingException, Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + heroId)
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
 				.andReturn()
@@ -58,14 +61,16 @@ public class HeroGetControllerTest {
 	//@Test
 	public void hero_not_found() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + UUID.randomUUID().toString())
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
 	//@Test
 	public void get_hero_bad_request() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/" + randomAlphabetic(36))
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 }

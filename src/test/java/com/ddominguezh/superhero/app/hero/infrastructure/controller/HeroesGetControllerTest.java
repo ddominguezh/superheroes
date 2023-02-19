@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ddominguezh.superhero.app.hero.application.useCase.findHero.FindHeroResponse;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.infrastructure.controller.WithAuthorizationController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -28,7 +29,7 @@ import com.google.gson.GsonBuilder;
 @ContextConfiguration(classes = SuperheroApplication.class)
 @AutoConfigureMockMvc
 @Transactional
-public class HeroesGetControllerTest {
+public class HeroesGetControllerTest extends WithAuthorizationController {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -36,14 +37,16 @@ public class HeroesGetControllerTest {
 	@Test
 	public void ping_heroes_enpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/hero/search")
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void get_all_heroes() throws UnsupportedEncodingException, Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/hero/search")
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
 				.andReturn()
@@ -57,7 +60,8 @@ public class HeroesGetControllerTest {
 	@Test
 	public void get_heroes_filter_by_name() throws UnsupportedEncodingException, Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/hero/search?name=man")
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
 				.andReturn()

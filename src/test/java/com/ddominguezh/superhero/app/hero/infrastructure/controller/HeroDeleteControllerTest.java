@@ -18,13 +18,14 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.infrastructure.controller.WithAuthorizationController;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = SuperheroApplication.class)
 @AutoConfigureMockMvc
 @Transactional
-public class HeroDeleteControllerTest {
+public class HeroDeleteControllerTest extends WithAuthorizationController {
 
 	private static final String heroId = "7f675eca-afbf-11ed-afa1-0242ac120002";
 	
@@ -34,31 +35,36 @@ public class HeroDeleteControllerTest {
 	@Test
 	public void ping_hero_enpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + heroId)
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void delete_hero() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + heroId)
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + heroId)
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
 	@Test
 	public void hero_not_found() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + UUID.randomUUID().toString())
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
 	@Test
 	public void delete_hero_bad_request() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.delete("/hero/" + randomAlphabetic(36))
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	

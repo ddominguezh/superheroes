@@ -21,6 +21,7 @@ import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.request.HeroRequest;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.infrastructure.controller.WithAuthorizationController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -29,7 +30,7 @@ import com.google.gson.GsonBuilder;
 @ContextConfiguration(classes = SuperheroApplication.class)
 @AutoConfigureMockMvc
 @Transactional
-public class HeroPostControllerTest {
+public class HeroPostControllerTest extends WithAuthorizationController {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -40,7 +41,8 @@ public class HeroPostControllerTest {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + UUID.randomUUID().toString())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(from(hero))))
+				.content(gson.toJson(from(hero)))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
@@ -50,7 +52,8 @@ public class HeroPostControllerTest {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(from(hero))))
+				.content(gson.toJson(from(hero)))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
@@ -60,7 +63,8 @@ public class HeroPostControllerTest {
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + randomAlphabetic(36))
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(from(hero))))
+				.content(gson.toJson(from(hero)))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
@@ -72,7 +76,8 @@ public class HeroPostControllerTest {
 		request.setName(null);
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(request)))
+				.content(gson.toJson(request))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
@@ -84,7 +89,8 @@ public class HeroPostControllerTest {
 		request.setName("");
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(request)))
+				.content(gson.toJson(request))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
@@ -96,7 +102,8 @@ public class HeroPostControllerTest {
 		request.setName(randomAlphabetic(256));
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(request)))
+				.content(gson.toJson(request))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
@@ -108,7 +115,8 @@ public class HeroPostControllerTest {
 		request.setGenderId(Integer.MAX_VALUE);
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(request)))
+				.content(gson.toJson(request))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
@@ -120,7 +128,8 @@ public class HeroPostControllerTest {
 		request.setEyeColorId(Integer.MAX_VALUE);
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(request)))
+				.content(gson.toJson(request))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
@@ -132,7 +141,8 @@ public class HeroPostControllerTest {
 		request.setHairColorId(Integer.MAX_VALUE);
 		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
-				.content(gson.toJson(request)))
+				.content(gson.toJson(request))
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	

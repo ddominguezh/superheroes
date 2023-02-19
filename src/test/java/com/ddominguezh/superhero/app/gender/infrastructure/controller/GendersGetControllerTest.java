@@ -22,6 +22,7 @@ import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindG
 import com.ddominguezh.superhero.app.gender.application.useCase.findGender.GenderResponse;
 import com.ddominguezh.superhero.app.gender.domain.Gender;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
+import com.ddominguezh.superhero.shared.infrastructure.controller.WithAuthorizationController;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -29,7 +30,7 @@ import com.google.gson.GsonBuilder;
 @SpringBootTest
 @ContextConfiguration(classes = SuperheroApplication.class)
 @AutoConfigureMockMvc
-public class GendersGetControllerTest {
+public class GendersGetControllerTest extends WithAuthorizationController {
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -37,14 +38,16 @@ public class GendersGetControllerTest {
 	@Test
 	public void ping_gender_enpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/gender/all")
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
 	@Test
 	public void get_all_genders() throws Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/gender/all")
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", authorizedToken()))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
 				.andReturn()
