@@ -2,6 +2,7 @@ package com.ddominguezh.superhero.app.hero.application.useCase.updateHero;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
@@ -28,6 +29,7 @@ public class HeroUpdater {
 	
 	@Autowired
 	private ColorByIdFinder colorFinder;
+	
 	
 	public void invoke(UpdateHeroCommand command) {
 		Hero hero = heroFinder.invoke(HeroId.create(command.getId()));

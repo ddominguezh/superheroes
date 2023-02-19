@@ -1,6 +1,8 @@
 package com.ddominguezh.superhero.app.hero.application.useCase.updateHero;
 
-public class UpdateHeroCommand {
+import com.ddominguezh.superhero.shared.domain.bus.command.Command;
+
+public class UpdateHeroCommand implements Command {
 
 	private String id;
 	private int genderId;

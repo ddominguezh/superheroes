@@ -37,7 +37,7 @@ public class H2HeroRepository extends HibernateRepository<Hero> implements HeroR
 
 	@Override
 	public void update(Hero hero) {
-		super.persist(hero);
+		super.update(hero);
 	}
-
+	
 }
