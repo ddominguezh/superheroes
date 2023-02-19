@@ -16,11 +16,12 @@ public class Authorization {
 	}
 	
 	private void validate() throws UnsupportedEncodingException {
-		if(!token.startsWith(BEARER)) {
-			throw new AuthorizationException();
-		}
-		token = token.substring(BEARER.length());
-		if(!VALID_TOKEN.equals(new String(Base64.getDecoder().decode(token), "UTF-8"))) {
+		try {
+			token = token.substring(BEARER.length());
+			if(!VALID_TOKEN.equals(new String(Base64.getDecoder().decode(token), "UTF-8"))) {
+				throw new AuthorizationException();
+			}
+		}catch(Exception e) {
 			throw new AuthorizationException();
 		}
 	}
