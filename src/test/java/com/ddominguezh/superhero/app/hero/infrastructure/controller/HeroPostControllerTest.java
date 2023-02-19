@@ -100,6 +100,18 @@ public class HeroPostControllerTest {
 				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
+	@Test
+	public void create_hero_gender_not_found() throws Exception {
+		Hero hero = HeroMother.randomHero();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setGenderId(Integer.MAX_VALUE);
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	
 	private HeroRequest from(Hero hero) {
 		HeroRequest request = new HeroRequest();
 		request.setGenderId(hero.genderId());
