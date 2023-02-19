@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
+import com.ddominguezh.superhero.app.hero.domain.useCase.findColorById.ColorByIdFinder;
 import com.ddominguezh.superhero.app.hero.domain.useCase.findGenderById.GenderByIdFinder;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColor;
+import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColorId;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGender;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGenderId;
 
@@ -18,15 +21,19 @@ public class HeroCreator {
 	@Autowired
 	private GenderByIdFinder genderFinder;
 	
+	@Autowired
+	private ColorByIdFinder colorFinder;
+	
 	public void invoke(CreateHeroCommand command) {
 		HeroGender gender = genderFinder.invoke(HeroGenderId.create(command.getGenderId()));
+		HeroColor eyeColor = colorFinder.invoke(HeroColorId.create(command.getEyeColorId()));
 		repository.create(
 				Hero.create(
 						command.getId(), 
 						gender.id(),
 						gender.name(),
-						command.getEyeColorId(),
-						null,
+						eyeColor.id(),
+						eyeColor.name(),
 						command.getHairColorId(),
 						null,
 						command.getName(),
