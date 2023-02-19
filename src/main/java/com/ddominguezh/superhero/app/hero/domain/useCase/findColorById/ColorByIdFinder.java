@@ -1,5 +1,7 @@
 package com.ddominguezh.superhero.app.hero.domain.useCase.findColorById;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class ColorByIdFinder {
 	private HeroColorRepository repository;
 	
 	public HeroColor invoke(HeroColorId id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<HeroColor> color = repository.findById(id);
+		return color.get();
 	}
 
 }
