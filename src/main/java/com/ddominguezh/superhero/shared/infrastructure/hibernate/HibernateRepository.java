@@ -50,6 +50,13 @@ public abstract class HibernateRepository<T> {
         return sessionFactory.getCurrentSession().createQuery(criteria).getResultList();
     }
     
+    protected void update(T entity) {
+    	sessionFactory.getCurrentSession().clear();
+    	sessionFactory.getCurrentSession().update(entity);
+        sessionFactory.getCurrentSession().flush();
+        sessionFactory.getCurrentSession().clear();
+    }
+    
     protected void delete(T entity) {
     	sessionFactory.getCurrentSession().delete(entity);
         sessionFactory.getCurrentSession().flush();

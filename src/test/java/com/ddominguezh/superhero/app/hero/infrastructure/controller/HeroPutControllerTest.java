@@ -1,5 +1,7 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.controller;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+
 import java.util.UUID;
 
 import org.junit.Test;
@@ -29,17 +31,111 @@ import com.google.gson.GsonBuilder;
 @Transactional
 public class HeroPutControllerTest {
 
+	private static final String heroId = "7f675eca-afbf-11ed-afa1-0242ac120002";
+	
 	@Autowired
 	private MockMvc mockMvc;
 	
 	@Test
 	public void ping_hero_enpoint() throws Exception {
-		Hero hero = HeroMother.randomHero();
+		Hero hero = HeroMother.randomHeroWithId(heroId);
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		mockMvc.perform(MockMvcRequestBuilders.put("/hero/" + UUID.randomUUID().toString())
+		mockMvc.perform(MockMvcRequestBuilders.put("/hero/" + hero.id())
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
 				.content(gson.toJson(from(hero))))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void update_hero() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(from(hero))))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void update_hero_id_bad_format() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + randomAlphabetic(36))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(from(hero))))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void update_hero_name_null() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setName(null);
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void update_hero_name_empty() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setName("");
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void update_hero_name_max_length() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setName(randomAlphabetic(256));
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void update_hero_gender_not_found() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setGenderId(Integer.MAX_VALUE);
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	
+	@Test
+	public void update_hero_eye_color_not_found() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setEyeColorId(Integer.MAX_VALUE);
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	
+	@Test
+	public void update_hero_hair_color_not_found() throws Exception {
+		Hero hero = HeroMother.randomHeroWithId(heroId);
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setHairColorId(Integer.MAX_VALUE);
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
 	private HeroRequest from(Hero hero) {
