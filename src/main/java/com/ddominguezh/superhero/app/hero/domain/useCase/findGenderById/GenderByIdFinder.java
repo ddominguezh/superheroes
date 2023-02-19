@@ -1,5 +1,7 @@
 package com.ddominguezh.superhero.app.hero.domain.useCase.findGenderById;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class GenderByIdFinder {
 	private HeroGenderRepository repository;
 	
 	public HeroGender invoke(HeroGenderId id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<HeroGender> gender = repository.findById(id);
+		return gender.get();
 	}
 
 }
