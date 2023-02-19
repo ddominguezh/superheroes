@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ddominguezh.superhero.app.hero.application.useCase.findHero.FindHeroQuery;
 import com.ddominguezh.superhero.app.hero.application.useCase.findHero.FindHeroResponse;
 import com.ddominguezh.superhero.app.hero.application.useCase.findOneHero.FindOneHeroQuery;
 import com.ddominguezh.superhero.shared.domain.DomainError;
@@ -37,7 +38,7 @@ public class HeroesGetController extends ApiController {
 		)
 	@ResponseBody
 	public FindHeroResponse index(@RequestParam(value = "name", defaultValue = "") String name) throws Exception{
-		return null;
+		return ask(new FindHeroQuery(name));
 	}
 
 	@Override
