@@ -35,16 +35,26 @@ public class ColorsGetControllerTest {
 	private MockMvc mockMvc;
 	
 	@Test
-	public void ping_color_enpoint() throws Exception {
+	public void ping_color_endpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", "Bearer MTIzYTRkZjgtYjA2OS0xMWVkLWFmYTEtMDI0MmFjMTIwMDAy"))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void color_endpoint_unauthorized() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", "Bearer MTIzYTRkZjgtYjA2OS0xMWVkLWFmYTEtMDI0MmFjMTIwMDAdy"))
+				.andExpect(MockMvcResultMatchers.status().isUnauthorized());
 	}
 	
 	@Test
 	public void get_all_colors() throws Exception {
 		String response = mockMvc.perform(MockMvcRequestBuilders.get("/color/all")
-				.contentType(MediaType.APPLICATION_JSON_VALUE))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.header("Authorization", "Bearer MTIzYTRkZjgtYjA2OS0xMWVkLWFmYTEtMDI0MmFjMTIwMDAy"))
 				.andExpect(MockMvcResultMatchers.status().isOk())
 				.andDo(MockMvcResultHandlers.print())
 				.andReturn()
