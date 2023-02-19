@@ -20,11 +20,11 @@ public class TraceableHandler {
 	@Before("execution(* com.ddominguezh.superhero.app.*.infrastructure.controller.*.*(..))")
 	public void initExecuteController(JoinPoint joinPoint) {
 		this.start = Instant.now();
-		logger.info("Start: " + joinPoint.getSignature().getName() + ".");
+		logger.info("Start: " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName() + ".");
 	}
 	
 	@After("execution(* com.ddominguezh.superhero.app.*.infrastructure.controller.*.*(..))")
 	public void endContorller(JoinPoint joinPoint) {
-		logger.info("End: " + joinPoint.getSignature().getName() + ". Duration: " + ChronoUnit.SECONDS.between(start, Instant.now())  + " seconds");
+		logger.info("End: " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName() + ". Duration: " + ChronoUnit.MILLIS.between(start, Instant.now())  + " miliseconds");
 	}
 }
