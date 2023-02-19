@@ -46,11 +46,15 @@ public class HeroCreatorTest {
 	
 	@Test
 	public void create_hero() {
+		Hero hero = HeroMother.randomHero();
+		
 		HeroGender gender = HeroMother.randomHeroGender();
 		when(genderFinder.invoke(any(HeroGenderId.class))).thenReturn(gender);
-		HeroColor color = HeroMother.randomHeroColor();
-		when(colorFinder.invoke(any(HeroColorId.class))).thenReturn(color);
-		Hero hero = HeroMother.randomHero();
+		HeroColor eyeColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.eyeColorId()))).thenReturn(eyeColor);
+		HeroColor hairColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.hairColorId()))).thenReturn(hairColor);
+		
 		creator.invoke(
 				new CreateHeroCommand(
 						hero.id(), 
@@ -67,10 +71,14 @@ public class HeroCreatorTest {
 	
 	@Test
 	public void hero_gender_not_found() {
-		when(genderFinder.invoke(any(HeroGenderId.class))).thenThrow(HeroGenderNotFoundException.class);
-		HeroColor color = HeroMother.randomHeroColor();
-		when(colorFinder.invoke(any(HeroColorId.class))).thenReturn(color);
 		Hero hero = HeroMother.randomHero();
+		
+		when(genderFinder.invoke(any(HeroGenderId.class))).thenThrow(HeroGenderNotFoundException.class);
+		HeroColor eyeColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.eyeColorId()))).thenReturn(eyeColor);
+		HeroColor hairColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.hairColorId()))).thenReturn(hairColor);
+		
 		assertThrows(HeroGenderNotFoundException.class, () -> creator.invoke(
 				new CreateHeroCommand(
 						hero.id(), 
@@ -87,10 +95,38 @@ public class HeroCreatorTest {
 	
 	@Test
 	public void hero_eye_color_not_found() {
+		Hero hero = HeroMother.randomHero();
 		HeroGender gender = HeroMother.randomHeroGender();
 		when(genderFinder.invoke(any(HeroGenderId.class))).thenReturn(gender);
-		when(colorFinder.invoke(any(HeroColorId.class))).thenThrow(HeroColorNotFoundException.class);
+		
+		when(colorFinder.invoke(HeroColorId.create(hero.eyeColorId()))).thenThrow(HeroColorNotFoundException.class);
+		HeroColor hairColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.hairColorId()))).thenReturn(hairColor);
+		
+		assertThrows(HeroColorNotFoundException.class, () -> creator.invoke(
+				new CreateHeroCommand(
+						hero.id(), 
+						hero.genderId(),
+						hero.eyeColorId(),
+						hero.hairColorId(),
+						hero.name(), 
+						hero.height(), 
+						hero.weight()
+					)
+				));
+		verify(repository, times(0)).create(any(Hero.class));
+	}
+	
+	@Test
+	public void hero_hair_color_not_found() {
 		Hero hero = HeroMother.randomHero();
+		
+		HeroGender gender = HeroMother.randomHeroGender();
+		when(genderFinder.invoke(any(HeroGenderId.class))).thenReturn(gender);
+		HeroColor eyeColor = HeroMother.randomHeroColor();
+		when(colorFinder.invoke(HeroColorId.create(hero.eyeColorId()))).thenReturn(eyeColor);
+		when(colorFinder.invoke(HeroColorId.create(hero.hairColorId()))).thenThrow(HeroColorNotFoundException.class);
+		
 		assertThrows(HeroColorNotFoundException.class, () -> creator.invoke(
 				new CreateHeroCommand(
 						hero.id(), 

@@ -124,6 +124,18 @@ public class HeroPostControllerTest {
 				.andExpect(MockMvcResultMatchers.status().isNotFound());
 	}
 	
+	@Test
+	public void create_hero_hair_color_not_found() throws Exception {
+		Hero hero = HeroMother.randomHero();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setHairColorId(Integer.MAX_VALUE);
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isNotFound());
+	}
+	
 	private HeroRequest from(Hero hero) {
 		HeroRequest request = new HeroRequest();
 		request.setGenderId(hero.genderId());
