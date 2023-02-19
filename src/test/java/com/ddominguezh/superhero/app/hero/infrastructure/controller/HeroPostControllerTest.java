@@ -1,5 +1,7 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.controller;
 
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+
 import java.util.UUID;
 
 import org.junit.Test;
@@ -50,6 +52,52 @@ public class HeroPostControllerTest {
 				.contentType(MediaType.APPLICATION_JSON_VALUE)
 				.content(gson.toJson(from(hero))))
 				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+	
+	@Test
+	public void create_hero_id_bad_format() throws Exception {
+		Hero hero = HeroMother.randomHero();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + randomAlphabetic(36))
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(from(hero))))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void create_hero_name_null() throws Exception {
+		Hero hero = HeroMother.randomHero();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setName(null);
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void create_hero_name_empty() throws Exception {
+		Hero hero = HeroMother.randomHero();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setName("");
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
+	}
+	
+	@Test
+	public void create_hero_name_max_length() throws Exception {
+		Hero hero = HeroMother.randomHero();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		HeroRequest request = from(hero);
+		request.setName(randomAlphabetic(256));
+		mockMvc.perform(MockMvcRequestBuilders.post("/hero/" + hero.id())
+				.contentType(MediaType.APPLICATION_JSON_VALUE)
+				.content(gson.toJson(request)))
+				.andExpect(MockMvcResultMatchers.status().isBadRequest());
 	}
 	
 	private HeroRequest from(Hero hero) {
