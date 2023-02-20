@@ -1,6 +1,8 @@
 # superheroes
 SuperHeroes Project
 
+Authorization: Bearer MTIzYTRkZjgtYjA2OS0xMWVkLWFmYTEtMDI0MmFjMTIwMDAy
+
 Open API Docs: /v3/api-docs/
 
 Docker
