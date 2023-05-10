@@ -12,6 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ddominguezh.cqrs.client.shared.infrastructure.controller.ApiController;
+import com.ddominguezh.cqrs.shared.domain.bus.command.CommandBus;
+import com.ddominguezh.cqrs.shared.domain.bus.query.QueryBus;
+import com.ddominguezh.spring.core.shared.domain.Authorization;
+import com.ddominguezh.spring.core.shared.domain.DomainError;
+import com.ddominguezh.spring.core.shared.domain.config.annotations.RequestAuthorization;
+import com.ddominguezh.spring.core.shared.domain.exception.AuthorizationException;
 import com.ddominguezh.superhero.app.hero.application.useCase.updateHero.UpdateHeroCommand;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroColorNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
@@ -19,13 +26,6 @@ import com.ddominguezh.superhero.app.hero.domain.exception.HeroIdFormatException
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNameFormatException;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNotFoundException;
 import com.ddominguezh.superhero.app.hero.infrastructure.controller.request.HeroRequest;
-import com.ddominguezh.superhero.shared.domain.Authorization;
-import com.ddominguezh.superhero.shared.domain.DomainError;
-import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
-import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
-import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
-import com.ddominguezh.superhero.shared.domain.exception.AuthorizationException;
-import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
 @Controller(value="HeroPutController")
 @RequestMapping("hero")

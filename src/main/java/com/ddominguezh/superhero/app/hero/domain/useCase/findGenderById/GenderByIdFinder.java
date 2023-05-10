@@ -3,8 +3,8 @@ package com.ddominguezh.superhero.app.hero.domain.useCase.findGenderById;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
+import org.springframework.stereotype.Service;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroGenderNotFoundException;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroGenderRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroGender;

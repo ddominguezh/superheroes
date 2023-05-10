@@ -1,6 +1,6 @@
 package com.ddominguezh.superhero.app.gender.domain.valueObject;
 
-import com.ddominguezh.superhero.shared.domain.StringValueObject;
+import com.ddominguezh.hibernate.core.shared.domain.StringValueObject;
 
 public class GenderName extends StringValueObject {
 

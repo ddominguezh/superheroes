@@ -1,6 +1,6 @@
 package com.ddominguezh.superhero.app.hero.application.useCase.deleteHero;
 
-import com.ddominguezh.superhero.shared.domain.bus.command.Command;
+import com.ddominguezh.cqrs.shared.domain.bus.command.Command;
 
 public class DeleteHeroCommand implements Command {
 

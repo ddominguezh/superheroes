@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ddominguezh.cqrs.client.shared.infrastructure.controller.ApiController;
+import com.ddominguezh.cqrs.shared.domain.bus.command.CommandBus;
+import com.ddominguezh.cqrs.shared.domain.bus.query.QueryBus;
+import com.ddominguezh.spring.core.shared.domain.Authorization;
+import com.ddominguezh.spring.core.shared.domain.DomainError;
+import com.ddominguezh.spring.core.shared.domain.config.annotations.RequestAuthorization;
+import com.ddominguezh.spring.core.shared.domain.exception.AuthorizationException;
 import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorQuery;
 import com.ddominguezh.superhero.app.color.application.useCase.findColor.FindColorResponse;
-import com.ddominguezh.superhero.shared.domain.Authorization;
-import com.ddominguezh.superhero.shared.domain.DomainError;
-import com.ddominguezh.superhero.shared.domain.bus.command.CommandBus;
-import com.ddominguezh.superhero.shared.domain.bus.query.QueryBus;
-import com.ddominguezh.superhero.shared.domain.config.annotations.RequestAuthorization;
-import com.ddominguezh.superhero.shared.domain.exception.AuthorizationException;
-import com.ddominguezh.superhero.shared.infrastructure.controller.ApiController;
 
 @Controller(value="ColorsGetController")
 @RequestMapping("color")
-public class ColorsGetController extends ApiController{
+public class ColorsGetController extends ApiController {
 
 	public ColorsGetController(QueryBus queryBus, CommandBus commandBus) {
 		super(queryBus, commandBus);

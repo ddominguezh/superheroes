@@ -34,7 +34,7 @@ public class ColorsGetControllerTest extends WithAuthorizationController {
 
 	@Autowired
 	private MockMvc mockMvc;
-	
+	 
 	@Test
 	public void ping_color_endpoint() throws Exception {
 		mockMvc.perform(MockMvcRequestBuilders.get("/color/all")

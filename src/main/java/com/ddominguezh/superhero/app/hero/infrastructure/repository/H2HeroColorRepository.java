@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ddominguezh.hibernate.core.shared.infrastructure.hibernate.HibernateRepository;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroColorRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColor;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroColorId;
-import com.ddominguezh.superhero.shared.infrastructure.hibernate.HibernateRepository;
 
 @Repository
 @Transactional("transaction_manager")

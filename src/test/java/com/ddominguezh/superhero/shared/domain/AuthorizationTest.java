@@ -8,7 +8,8 @@ import java.util.UUID;
 
 import org.junit.Test;
 
-import com.ddominguezh.superhero.shared.domain.exception.AuthorizationException;
+import com.ddominguezh.spring.core.shared.domain.Authorization;
+import com.ddominguezh.spring.core.shared.domain.exception.AuthorizationException;
 
 public class AuthorizationTest {
 

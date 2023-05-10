@@ -1,6 +1,6 @@
 package com.ddominguezh.superhero.app.color.domain.valueObject;
 
-import com.ddominguezh.superhero.shared.domain.IntValueObject;
+import com.ddominguezh.hibernate.core.shared.domain.IntValueObject;
 
 public class ColorId extends IntValueObject {
 

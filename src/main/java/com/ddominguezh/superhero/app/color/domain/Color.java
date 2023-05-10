@@ -2,8 +2,6 @@ package com.ddominguezh.superhero.app.color.domain;
 
 import com.ddominguezh.superhero.app.color.domain.valueObject.ColorId;
 import com.ddominguezh.superhero.app.color.domain.valueObject.ColorName;
-import com.ddominguezh.superhero.shared.domain.IntValueObject;
-import com.ddominguezh.superhero.shared.domain.StringValueObject;
 
 public class Color {
 

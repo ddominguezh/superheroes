@@ -1,6 +1,6 @@
 package com.ddominguezh.superhero.app.hero.infrastructure.repository;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,11 +9,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ddominguezh.hibernate.core.shared.domain.criteria.Criteria;
+import com.ddominguezh.hibernate.core.shared.domain.criteria.Filter;
+import com.ddominguezh.hibernate.core.shared.domain.criteria.FilterField;
+import com.ddominguezh.hibernate.core.shared.domain.criteria.FilterOperator;
+import com.ddominguezh.hibernate.core.shared.domain.criteria.FilterValue;
+import com.ddominguezh.hibernate.core.shared.domain.criteria.Filters;
+import com.ddominguezh.hibernate.core.shared.domain.criteria.Order;
+import com.ddominguezh.hibernate.core.shared.infrastructure.hibernate.HibernateRepository;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName;
-import com.ddominguezh.superhero.shared.infrastructure.hibernate.HibernateRepository;
 
 @Repository
 @Transactional("transaction_manager")
@@ -51,11 +58,13 @@ public class H2HeroRepository extends HibernateRepository<Hero> implements HeroR
 	@SuppressWarnings("serial")
 	@Override
 	public List<Hero> findAll(HeroName name) {
-		return byNativeQuery("select * from hero where upper(name) like upper(:name)", new HashMap<String, Object>() {
+		Filter filter = new Filter(new FilterField("name.value"), FilterOperator.CONTAINS, new FilterValue(name.value()));
+		Criteria criteria = new Criteria(new Filters(new ArrayList<Filter>() {
 			{
-				put("name", "%" + name.value() + "%");
+				add(filter);
 			}
-		});
+		}), Order.none());
+		return byCriteria(criteria);
 	}
 	
 	

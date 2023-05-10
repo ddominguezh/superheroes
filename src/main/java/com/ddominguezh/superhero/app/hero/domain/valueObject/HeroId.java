@@ -1,7 +1,7 @@
 package com.ddominguezh.superhero.app.hero.domain.valueObject;
 
+import com.ddominguezh.hibernate.core.shared.domain.Identifier;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroIdFormatException;
-import com.ddominguezh.superhero.shared.domain.Identifier;
 
 public class HeroId extends Identifier {
 

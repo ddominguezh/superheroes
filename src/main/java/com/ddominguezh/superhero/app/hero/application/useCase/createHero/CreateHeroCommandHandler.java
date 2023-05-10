@@ -4,7 +4,7 @@ import javax.annotation.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.ddominguezh.superhero.shared.domain.bus.command.CommandHandler;
+import com.ddominguezh.cqrs.shared.domain.bus.command.CommandHandler;
 
 @ManagedBean
 public class CreateHeroCommandHandler implements CommandHandler<CreateHeroCommand> {

@@ -1,9 +1,8 @@
 package com.ddominguezh.superhero.app.hero.application.useCase.updateHero;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import org.springframework.stereotype.Service;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
 import com.ddominguezh.superhero.app.hero.domain.useCase.findColorById.ColorByIdFinder;

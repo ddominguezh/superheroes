@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ddominguezh.cqrs.shared.domain.bus.query.Response;
 import com.ddominguezh.superhero.app.color.domain.Color;
-import com.ddominguezh.superhero.shared.domain.bus.query.Response;
 
 public class FindColorResponse implements Response {
 

@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ddominguezh.hibernate.core.shared.infrastructure.hibernate.HibernateRepository;
 import com.ddominguezh.superhero.app.gender.domain.Gender;
 import com.ddominguezh.superhero.app.gender.domain.repository.GenderRepository;
-import com.ddominguezh.superhero.shared.infrastructure.hibernate.HibernateRepository;
 
 @Repository
 @Transactional("transaction_manager")

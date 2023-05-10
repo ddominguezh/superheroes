@@ -12,7 +12,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 @EnableAspectJAutoProxy
-@ComponentScan({"com.ddominguezh.superhero.app"})
+@ComponentScan(
+		{
+			"com.ddominguezh.spring.core",
+			"com.ddominguezh.logger.core",
+			"com.ddominguezh.cqrs.client",
+			"com.ddominguezh.hibernate.core",
+			"com.ddominguezh.hibernate.shared",
+			"com.ddominguezh.superhero.app"
+		}
+	)
 public class WebMVC implements WebMvcConfigurer {
 	
 	@Bean

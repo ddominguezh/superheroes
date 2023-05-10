@@ -2,8 +2,6 @@ package com.ddominguezh.superhero.app.gender.domain;
 
 import com.ddominguezh.superhero.app.gender.domain.valueObject.GenderId;
 import com.ddominguezh.superhero.app.gender.domain.valueObject.GenderName;
-import com.ddominguezh.superhero.shared.domain.IntValueObject;
-import com.ddominguezh.superhero.shared.domain.StringValueObject;
 
 public class Gender {
 

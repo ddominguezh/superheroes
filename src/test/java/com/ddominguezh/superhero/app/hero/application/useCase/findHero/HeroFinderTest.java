@@ -18,14 +18,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderQuery;
-import com.ddominguezh.superhero.app.gender.application.useCase.findGender.FindGenderResponse;
 import com.ddominguezh.superhero.app.hero.domain.Hero;
 import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.repository.HeroRepository;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
-import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

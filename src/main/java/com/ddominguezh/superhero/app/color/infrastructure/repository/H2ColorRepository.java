@@ -2,15 +2,14 @@ package com.ddominguezh.superhero.app.color.infrastructure.repository;
 
 import java.util.List;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.ddominguezh.hibernate.core.shared.infrastructure.hibernate.HibernateRepository;
+import org.springframework.stereotype.Service;
 import com.ddominguezh.superhero.app.color.domain.Color;
 import com.ddominguezh.superhero.app.color.domain.repository.ColorRepository;
-import com.ddominguezh.superhero.shared.infrastructure.hibernate.HibernateRepository;
 
 @Service
 @Transactional("transaction_manager")

@@ -1,6 +1,6 @@
 package com.ddominguezh.superhero.app.hero.application.useCase.findOneHero;
 
-import com.ddominguezh.superhero.shared.domain.bus.query.Query;
+import com.ddominguezh.cqrs.shared.domain.bus.query.Query;
 
 public class FindOneHeroQuery implements Query {
 

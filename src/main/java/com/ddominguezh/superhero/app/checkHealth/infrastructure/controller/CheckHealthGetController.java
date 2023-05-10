@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ddominguezh.superhero.shared.domain.config.annotations.Traceable;
+import com.ddominguezh.logger.spring.client.shared.domain.config.annotations.Traceable;
 
 @Controller(value="CheckHealthGetController")
 @RequestMapping("check-health")

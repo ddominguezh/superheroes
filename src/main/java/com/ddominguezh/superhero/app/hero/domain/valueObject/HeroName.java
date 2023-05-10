@@ -1,7 +1,7 @@
 package com.ddominguezh.superhero.app.hero.domain.valueObject;
 
+import com.ddominguezh.hibernate.core.shared.domain.StringValueObject;
 import com.ddominguezh.superhero.app.hero.domain.exception.HeroNameFormatException;
-import com.ddominguezh.superhero.shared.domain.StringValueObject;
 
 public class HeroName extends StringValueObject {
 

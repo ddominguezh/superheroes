@@ -3,12 +3,10 @@ package com.ddominguezh.superhero.app.hero.infrastructure.repository;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.hibernate.query.Query;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +20,6 @@ import com.ddominguezh.superhero.app.hero.domain.HeroMother;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroId;
 import com.ddominguezh.superhero.app.hero.domain.valueObject.HeroName;
 import com.ddominguezh.superhero.shared.SuperheroApplication;
-import com.ddominguezh.superhero.shared.domain.criteria.Criteria;
-import com.ddominguezh.superhero.shared.domain.criteria.Filter;
-import com.ddominguezh.superhero.shared.domain.criteria.FilterOperator;
-import com.ddominguezh.superhero.shared.domain.criteria.Filters;
-import com.ddominguezh.superhero.shared.domain.criteria.Order;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

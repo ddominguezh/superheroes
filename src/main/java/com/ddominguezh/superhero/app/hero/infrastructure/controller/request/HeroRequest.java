@@ -44,4 +44,9 @@ public class HeroRequest {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
+	@Override
+	public String toString() {
+		return "HeroRequest [genderId=" + genderId + ", eyeColorId=" + eyeColorId + ", hairColorId=" + hairColorId
+				+ ", name=" + name + ", height=" + height + ", weight=" + weight + "]";
+	}
 }
